@@ -13,21 +13,47 @@ async function convertToPDF(htmlFile, outputFile, options = {}) {
   try {
     const page = await browser.newPage();
     
-    // Set viewport for consistent rendering
-    await page.setViewport({ width: 1280, height: 720 });
-    
-    // Navigate to the HTML file
+    // Navigate to the HTML file first
     const htmlPath = path.resolve(htmlFile);
     await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
     
-    // Wait a bit for fonts to load
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Wait for fonts and content to load
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Generate PDF with optimized settings for slides
+    // Get the actual content dimensions
+    const dimensions = await page.evaluate(() => {
+      const container = document.querySelector('.slide-container');
+      if (!container) {
+        return { width: 1280, height: 720 };
+      }
+      
+      // Get the actual rendered dimensions
+      const rect = container.getBoundingClientRect();
+      const computedStyle = window.getComputedStyle(container);
+      
+      // Use the larger of content height or min-height
+      const minHeight = parseInt(computedStyle.minHeight) || 720;
+      const actualHeight = Math.max(rect.height, minHeight);
+      
+      return {
+        width: rect.width || 1280,
+        height: actualHeight
+      };
+    });
+    
+    console.log(`📐 Content dimensions: ${dimensions.width}x${dimensions.height}px`);
+    
+    // Set viewport to match content dimensions
+    await page.setViewport({ 
+      width: Math.round(dimensions.width), 
+      height: Math.round(dimensions.height) 
+    });
+    
+    // Generate PDF with dynamic dimensions
     await page.pdf({
       path: outputFile,
-      format: 'A4',
-      landscape: true,
+      width: `${dimensions.width}px`,
+      height: `${dimensions.height}px`,
       printBackground: true,
       margin: { 
         top: 0, 
@@ -39,7 +65,7 @@ async function convertToPDF(htmlFile, outputFile, options = {}) {
       ...options
     });
     
-    console.log(`✅ Generated: ${outputFile}`);
+    console.log(`✅ Generated: ${outputFile} (${dimensions.width}x${dimensions.height}px)`);
   } catch (error) {
     console.error(`❌ Error converting ${htmlFile}:`, error.message);
   } finally {
@@ -53,29 +79,50 @@ async function convertTemplate(templateDir, outputDir) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
   
-  const slides = [
-    'cover.html',
-    'title_overview.html', 
-    'what_you_get.html',
-    'agreement_next_steps.html'
-  ];
+  // Dynamically find all HTML files in the template directory
+  const allFiles = fs.readdirSync(templateDir);
+  const htmlFiles = allFiles.filter(file => file.endsWith('.html')).sort();
   
-  console.log(`🚀 Converting slides from ${templateDir}...`);
+  if (htmlFiles.length === 0) {
+    console.log(`⚠️  No HTML files found in ${templateDir}`);
+    return;
+  }
   
-  for (const slide of slides) {
-    const htmlFile = path.join(templateDir, slide);
-    const pdfFile = path.join(outputDir, slide.replace('.html', '.pdf'));
+  console.log(`🚀 Converting ${htmlFiles.length} slides from ${templateDir}...`);
+  console.log(`📄 Found files: ${htmlFiles.join(', ')}`);
+  
+  const pdfFiles = [];
+  
+  for (const htmlFile of htmlFiles) {
+    const htmlPath = path.join(templateDir, htmlFile);
+    const pdfFile = path.join(outputDir, htmlFile.replace('.html', '.pdf'));
     
-    if (fs.existsSync(htmlFile)) {
-      await convertToPDF(htmlFile, pdfFile);
+    if (fs.existsSync(htmlPath)) {
+      await convertToPDF(htmlPath, pdfFile);
+      pdfFiles.push(pdfFile);
     } else {
-      console.log(`⚠️  Skipping ${slide} - file not found`);
+      console.log(`⚠️  Skipping ${htmlFile} - file not found`);
     }
   }
   
-  // Also create a combined PDF name
+  // Create combined PDF
+  if (pdfFiles.length > 1) {
+    const templateName = path.basename(templateDir);
+    const combinedPdf = path.join(outputDir, `${templateName}-combined.pdf`);
+    
+    try {
+      const { execSync } = require('child_process');
+      const pdfFilesStr = pdfFiles.map(f => `"${f}"`).join(' ');
+      execSync(`pdfunite ${pdfFilesStr} "${combinedPdf}"`);
+      console.log(`📋 Combined PDF created: ${combinedPdf}`);
+    } catch (error) {
+      console.log(`⚠️  Could not create combined PDF: ${error.message}`);
+      console.log(`💡 Install poppler-utils for combined PDF support: apt-get install poppler-utils`);
+    }
+  }
+  
   const templateName = path.basename(templateDir);
-  console.log(`📋 Template "${templateName}" conversion complete!`);
+  console.log(`📁 Template "${templateName}" conversion complete!`);
   console.log(`📁 PDFs saved to: ${outputDir}`);
 }
 
@@ -85,13 +132,13 @@ if (require.main === module) {
   
   if (args.length === 0) {
     console.log(`
-📄 Brillnt Slide PDF Converter
+📄 Brillnt Slide PDF Converter (Dynamic Sizing)
 
 Usage:
   node scripts/convert-to-pdf.js <template-dir> [output-dir]
   
 Examples:
-  # Convert discovery-planning template
+  # Convert discovery-planning template with dynamic sizing
   node scripts/convert-to-pdf.js templates/discovery-planning pdfs/discovery-planning
   
   # Convert single slide
