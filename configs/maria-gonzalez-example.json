@@ -1,0 +1,10 @@
+{
+  "client_name": "María González, Café Esperanza",
+  "date": "June 7, 2025",
+  "payment": {
+    "amount": "Pay $1,500",
+    "description": "Initial Payment",
+    "provider": "FreshBooks"
+  }
+}
+
