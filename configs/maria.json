@@ -4,7 +4,8 @@
   "payment": {
     "amount": "Pay $1,500",
     "description": "Initial Payment",
-    "provider": "FreshBooks"
+    "provider": "FreshBooks",
+    "link": "https://freshbooks.com/pay/cafe-esperanza"
   }
 }
 

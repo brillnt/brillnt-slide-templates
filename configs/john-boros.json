@@ -4,7 +4,8 @@
   "payment": {
     "amount": "Pay $1,000",
     "description": "Deposit to Start",
-    "provider": "Bonsai"
+    "provider": "Bonsai",
+    "link": "https://bonsai.com/pay/keylight-discovery"
   }
 }
 

@@ -13,7 +13,8 @@ const DEFAULT_CONFIG = {
     payment: {
         amount: 'Pay $1,000',
         description: 'Deposit to Start',
-        provider: 'Bonsai'
+        provider: 'Bonsai',
+        link: '#'
     }
 };
 
@@ -37,7 +38,8 @@ function applyDefaults(config) {
         result.payment = {
             amount: result.payment.amount || DEFAULT_CONFIG.payment.amount,
             description: result.payment.description || DEFAULT_CONFIG.payment.description,
-            provider: result.payment.provider || DEFAULT_CONFIG.payment.provider
+            provider: result.payment.provider || DEFAULT_CONFIG.payment.provider,
+            link: result.payment.link || DEFAULT_CONFIG.payment.link
         };
     }
     
@@ -60,7 +62,7 @@ function validateConfig(config) {
     // Payment validation with specific field guidance
     if (!config.payment) {
         errors.push('❌ payment object is required');
-        errors.push('💡 Add: "payment": { "amount": "Pay $1,000", "description": "Deposit", "provider": "Bonsai" }');
+        errors.push('💡 Add: "payment": { "amount": "Pay $1,000", "description": "Deposit", "provider": "Bonsai", "link": "https://..." }');
     } else {
         if (!config.payment.amount || config.payment.amount.trim() === '') {
             errors.push('❌ payment.amount is required (e.g., "Pay $1,000")');
@@ -71,6 +73,7 @@ function validateConfig(config) {
         if (!config.payment.provider || config.payment.provider.trim() === '') {
             errors.push('❌ payment.provider is required (e.g., "Bonsai", "FreshBooks")');
         }
+        // payment.link is optional, defaults to '#' if not provided
     }
     
     return errors;
@@ -102,7 +105,8 @@ function processConfig(rawConfig) {
                 payment: {
                     amount: "Pay $1,000",
                     description: "Deposit to Start", 
-                    provider: "Bonsai"
+                    provider: "Bonsai",
+                    link: "https://bonsai.com/pay/abc123"
                 }
             }, null, 2)
         ].join('\n');

@@ -87,6 +87,7 @@ function replacePlaceholders(content, config) {
         result = result.replace(/\{\{payment\.amount\}\}/g, config.payment.amount);
         result = result.replace(/\{\{payment\.description\}\}/g, config.payment.description);
         result = result.replace(/\{\{payment\.provider\}\}/g, config.payment.provider);
+        result = result.replace(/\{\{payment\.link\}\}/g, config.payment.link);
     }
     
     return result;
