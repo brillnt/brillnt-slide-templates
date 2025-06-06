@@ -20,7 +20,7 @@ function showUsage() {
     console.log('');
     console.log('📁 Available clients:');
     
-    const exportsDir = path.join(__dirname, '..', 'exports-saved');
+    const exportsDir = path.join(__dirname, '..', 'exports');
     if (fs.existsSync(exportsDir)) {
         const clients = fs.readdirSync(exportsDir).filter(item => 
             fs.statSync(path.join(exportsDir, item)).isDirectory()
@@ -31,7 +31,7 @@ function showUsage() {
             console.log('   (No client slides found)');
         }
     } else {
-        console.log('   (No exports-saved directory found)');
+        console.log('   (No exports directory found)');
     }
 }
 
@@ -84,7 +84,7 @@ function generatePDF(configFileInput) {
         console.log(`👤 Client: "${config.client_name}" → "${clientSlug}"`);
         
         // Find slides directory
-        const slidesDir = path.join(__dirname, '..', 'exports-saved', clientSlug, 'slides');
+        const slidesDir = path.join(__dirname, '..', 'exports', clientSlug, 'slides');
         if (!fs.existsSync(slidesDir)) {
             console.error(`❌ Client slides not found: ${slidesDir}`);
             console.error(`💡 Run customization first: npm run customize -- discovery ${configFileInput}`);
@@ -93,7 +93,7 @@ function generatePDF(configFileInput) {
         }
         
         // Create PDFs directory
-        const pdfsDir = path.join(__dirname, '..', 'exports-saved', clientSlug, 'pdfs');
+        const pdfsDir = path.join(__dirname, '..', 'exports', clientSlug, 'pdfs');
         if (!fs.existsSync(pdfsDir)) {
             fs.mkdirSync(pdfsDir, { recursive: true });
             console.log(`📁 Created PDFs directory: ${pdfsDir}`);

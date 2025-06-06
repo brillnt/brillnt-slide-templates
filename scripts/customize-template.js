@@ -161,7 +161,7 @@ function customizeTemplate(templateNameInput, configFileInput) {
         console.log(`📁 Client slug: ${clientSlug}`);
         
         // Create output directory
-        const outputDir = path.join(__dirname, '..', 'exports-saved', clientSlug, 'slides');
+        const outputDir = path.join(__dirname, '..', 'exports', clientSlug, 'slides');
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
             console.log(`📁 Created output directory: ${outputDir}`);
