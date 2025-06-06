@@ -3,6 +3,7 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
+const { getDisplayPath, getDisplayDir } = require('./path-utils');
 
 async function convertToPDF(htmlFile, outputFile, options = {}) {
   const browser = await puppeteer.launch({
@@ -65,7 +66,7 @@ async function convertToPDF(htmlFile, outputFile, options = {}) {
       ...options
     });
     
-    console.log(`✅ Generated: ${outputFile} (${dimensions.width}x${dimensions.height}px)`);
+    console.log(`✅ Generated: ${getDisplayPath(outputFile)} (${dimensions.width}x${dimensions.height}px)`);
   } catch (error) {
     console.error(`❌ Error converting ${htmlFile}:`, error.message);
   } finally {
@@ -88,7 +89,7 @@ async function convertTemplate(templateDir, outputDir) {
     return;
   }
   
-  console.log(`🚀 Converting ${htmlFiles.length} slides from ${templateDir}...`);
+  console.log(`🚀 Converting ${htmlFiles.length} slides from ${getDisplayDir(templateDir)}...`);
   console.log(`📄 Found files: ${htmlFiles.join(', ')}`);
   
   const pdfFiles = [];
@@ -114,7 +115,7 @@ async function convertTemplate(templateDir, outputDir) {
       const { execSync } = require('child_process');
       const pdfFilesStr = pdfFiles.map(f => `"${f}"`).join(' ');
       execSync(`pdfunite ${pdfFilesStr} "${combinedPdf}"`);
-      console.log(`📋 Combined PDF created: ${combinedPdf}`);
+      console.log(`📋 Combined PDF created: ${getDisplayPath(combinedPdf)}`);
     } catch (error) {
       console.log(`⚠️  Could not create combined PDF: ${error.message}`);
       console.log(`💡 Install poppler for combined PDF support:`);
@@ -126,7 +127,7 @@ async function convertTemplate(templateDir, outputDir) {
   
   const templateName = path.basename(templateDir);
   console.log(`📁 Template "${templateName}" conversion complete!`);
-  console.log(`📁 PDFs saved to: ${outputDir}`);
+  console.log(`📁 PDFs saved to: ${getDisplayDir(outputDir)}`);
 }
 
 // Command line usage

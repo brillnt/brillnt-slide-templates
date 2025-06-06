@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { resolveTemplateName, resolveConfigPath, getTemplateMapping } = require('./template-config');
+const { getDisplayPath, getDisplayDir } = require('./path-utils');
 
 /**
  * Template Customization Script
@@ -164,7 +165,7 @@ function customizeTemplate(templateNameInput, configFileInput) {
         const outputDir = path.join(__dirname, '..', 'exports', clientSlug, 'slides');
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
-            console.log(`📁 Created output directory: ${outputDir}`);
+            console.log(`📁 Created output directory: ${getDisplayDir(outputDir)}`);
         }
         
         // Copy assets to client directory for self-contained package
@@ -216,12 +217,12 @@ function customizeTemplate(templateNameInput, configFileInput) {
         
         console.log('');
         console.log(`🎉 Template customization complete!`);
-        console.log(`📁 Customized slides saved to: ${outputDir}`);
+        console.log(`📁 Customized slides saved to: ${getDisplayDir(outputDir)}`);
         console.log(`📋 Files generated: ${templateFiles.length}`);
         console.log('');
         console.log(`💡 Next steps:`);
         console.log(`   - Review the customized slides`);
-        console.log(`   - Generate PDFs using: node scripts/convert-to-pdf.js "${outputDir}"`);
+        console.log(`   - Generate PDFs using: node scripts/convert-to-pdf.js "${getDisplayPath(outputDir)}"`);
         
     } catch (error) {
         console.error(`❌ Error: ${error.message}`);

@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { resolveConfigPath } = require('./template-config');
+const { getDisplayPath, getDisplayDir } = require('./path-utils');
 
 /**
  * PDF Generation Script for Client Slides
@@ -96,12 +97,12 @@ function generatePDF(configFileInput) {
         const pdfsDir = path.join(__dirname, '..', 'exports', clientSlug, 'pdfs');
         if (!fs.existsSync(pdfsDir)) {
             fs.mkdirSync(pdfsDir, { recursive: true });
-            console.log(`📁 Created PDFs directory: ${pdfsDir}`);
+            console.log(`📁 Created PDFs directory: ${getDisplayDir(pdfsDir)}`);
         }
         
         console.log(`🚀 Generating PDFs for client: ${clientSlug}`);
-        console.log(`📁 Slides source: ${slidesDir}`);
-        console.log(`📁 PDFs output: ${pdfsDir}`);
+        console.log(`📁 Slides source: ${getDisplayDir(slidesDir)}`);
+        console.log(`📁 PDFs output: ${getDisplayDir(pdfsDir)}`);
         console.log('');
         
         // Use existing convert-to-pdf script with custom output
@@ -117,7 +118,7 @@ function generatePDF(configFileInput) {
             if (code === 0) {
                 console.log('');
                 console.log(`🎉 PDF generation complete!`);
-                console.log(`📁 PDFs saved to: ${pdfsDir}`);
+                console.log(`📁 PDFs saved to: ${getDisplayDir(pdfsDir)}`);
             } else {
                 console.error(`❌ PDF generation failed with code ${code}`);
                 process.exit(1);
