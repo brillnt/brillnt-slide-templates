@@ -1,0 +1,26 @@
+{
+  "name": "brillnt-slide-templates",
+  "version": "1.0.0",
+  "description": "Professional slide templates for client presentations, built with HTML/CSS and optimized for PDF export.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "convert": "node scripts/convert-to-pdf.js",
+    "convert:discovery": "node scripts/convert-to-pdf.js templates/discovery-planning pdfs/discovery-planning",
+    "convert:all": "npm run convert:discovery"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brillnt/brillnt-slide-templates.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brillnt/brillnt-slide-templates/issues"
+  },
+  "homepage": "https://github.com/brillnt/brillnt-slide-templates#readme",
+  "dependencies": {
+    "puppeteer": "^24.10.0"
+  }
+}

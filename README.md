@@ -204,3 +204,51 @@ These templates are proprietary to Brillnt, LLC. Internal use only.
 
 *Last updated: June 6, 2025*
 
+
+
+## 📄 PDF Conversion
+
+This repository now includes automated PDF conversion using Puppeteer for professional-quality exports.
+
+### **Quick PDF Generation**
+```bash
+# Install dependencies (one time)
+npm install
+
+# Convert Discovery & Planning template
+npm run convert:discovery
+
+# PDFs will be saved to pdfs/discovery-planning/
+```
+
+### **Available Scripts**
+- `npm run convert:discovery` - Convert Discovery & Planning template
+- `npm run convert:all` - Convert all available templates
+- `node scripts/convert-to-pdf.js [template-dir] [output-dir]` - Custom conversion
+
+### **PDF Quality Features**
+- **High-quality rendering** using Chrome's engine
+- **Perfect CSS support** for Tailwind and modern layouts
+- **Proper font rendering** for Inter and Google Fonts
+- **Print-optimized** margins and sizing
+- **Professional output** ready for client presentation
+
+See [PDF_CONVERSION.md](docs/PDF_CONVERSION.md) for detailed documentation.
+
+
+
+## ⚠️ Known Issues
+
+### **PDF Conversion**
+The automated PDF conversion works well but has some minor spacing/margin issues that are being refined. 
+
+**Current workaround:** 
+- Pull HTML files from this repo
+- Upload to Manus chat interface for high-quality PDF export
+- This provides perfect PDF output while we optimize the automated conversion
+
+**Future improvements:**
+- Fine-tune viewport and page sizing
+- Optimize margin and spacing calculations
+- Add print-specific CSS media queries
+
