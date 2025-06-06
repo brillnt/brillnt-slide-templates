@@ -2,99 +2,134 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .slide-container {
             width: 1280px; 
-            min-height: 100vh;
-            height: 100vh;
+            min-height: 720px; 
             background: #ffffff;
             font-family: 'Inter', sans-serif;
-        }
-        .title-text {
-            font-weight: 600;
-            color: #000000;
-        }
-        .section-title {
-            font-weight: 600;
-            color: #000000;
-        }
-        .body-text {
-            font-weight: 400;
-            color: #374151;
-        }
-        .signature-box {
-            border: 2px solid #E5E7EB;
-            background: #FAFAFA;
-        }
-        .contact-info {
-            background: #F9FAFB;
-            border: 1px solid #E5E7EB;
         }
     </style>
 </head>
 <body>
     <div class="slide-container flex flex-col p-16">
-        <!-- Header with Logo -->
-        <div class="flex justify-between items-start mb-12">
-            <img src="../../assets/brillnt-logo--black.png" alt="brillnt." class="h-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="/home/ubuntu/upload/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">[Client Name]</div>
+                <div>[Date]</div>
+            </div>
         </div>
 
         <!-- Main Content -->
         <div class="flex-1">
-            <h1 class="title-text text-5xl mb-16 leading-tight">
+            <h1 class="text-5xl font-semibold text-black mb-16 leading-tight">
                 Agreement & Next Steps
             </h1>
             
-            <!-- Key Terms Section -->
-            <div class="mb-16">
-                <h2 class="section-title text-2xl mb-8">Key Terms</h2>
-                <div class="space-y-4 max-w-4xl">
-                    <div class="body-text text-lg leading-relaxed">
-                        $1,000 deposit required to begin • Planning phase is non-refundable
+            <div class="grid grid-cols-2 gap-16">
+                <!-- Left Column - Our Commitment -->
+                <div>
+                    <h2 class="text-2xl font-semibold text-black mb-8">Our Commitment</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-black rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <i class="fas fa-search text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-lg font-semibold text-black mb-1">Professional Discovery Process</div>
+                                <div class="text-base text-gray-600">Comprehensive assessment of your current project with strategic recommendations</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-black rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <i class="fas fa-file-alt text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-lg font-semibold text-black mb-1">Detailed Planning Documentation</div>
+                                <div class="text-base text-gray-600">Complete project outline, specifications, and clear timeline for full project</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-black rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <i class="fas fa-handshake text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-lg font-semibold text-black mb-1">Next Steps Guarantee</div>
+                                <div class="text-base text-gray-600">When you complete all planning requirements, we commit to providing you with the next available start date</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="body-text text-lg leading-relaxed">
-                        No obligation to proceed with full project after planning
+                </div>
+
+                <!-- Right Column - Investment & Terms -->
+                <div>
+                    <h2 class="text-2xl font-semibold text-black mb-8">Investment & Terms</h2>
+                    
+                    <!-- Investment Box -->
+                    <div class="bg-gray-50 rounded-3xl p-8 border border-gray-200 mb-8">
+                        <div class="text-lg font-semibold text-black mb-4">Planning Phase Investment: $1,500</div>
+                        <div class="space-y-2 text-base text-gray-700">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-black rounded-full mr-3"></div>
+                                <div>$1,000 deposit to begin (due upon signing)</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-black rounded-full mr-3"></div>
+                                <div>$500 final payment upon planning completion</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-black rounded-full mr-3"></div>
+                                <div>This amount applies toward your total project cost</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-black rounded-full mr-3"></div>
+                                <div>No obligation to proceed with full project</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="body-text text-lg leading-relaxed">
-                        All information remains confidential
+                    
+                    <!-- Terms -->
+                    <div class="space-y-3 text-base text-gray-700">
+                        <div><span class="font-semibold text-black">Scope:</span> Discovery, planning, and documentation only</div>
+                        <div><span class="font-semibold text-black">Confidentiality:</span> All information shared remains confidential</div>
+                        <div><span class="font-semibold text-black">Timeline:</span> 7-10 business days (content dependent)</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Ready to Begin Section -->
-            <div class="mb-12">
-                <h2 class="section-title text-2xl mb-6">Ready to Begin?</h2>
-                <p class="body-text text-lg leading-relaxed max-w-4xl mb-8">
-                    By signing below, you're taking the first step toward a website that truly serves your business goals.
-                </p>
+            <!-- Signature Area -->
+            <div class="mt-16 bg-gray-100 text-black rounded-3xl p-10" style="border: 3px solid #D4AF37;">
+                <h3 class="text-2xl font-semibold mb-8 text-center">Ready to Begin?</h3>
                 
-                <!-- Signature Area -->
-                <div class="signature-box rounded-xl p-6 max-w-2xl mb-8">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <div class="text-sm text-gray-600 mb-2">Client Signature</div>
-                            <div class="border-b-2 border-gray-300 w-80 h-8"></div>
-                        </div>
-                        <div class="ml-8">
-                            <div class="text-sm text-gray-600 mb-2">Date</div>
-                            <div class="border-b-2 border-gray-300 w-32 h-8"></div>
-                        </div>
+                <!-- Payment Button (No Link) -->
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center bg-black text-white px-8 py-4 rounded-2xl text-lg font-semibold cursor-pointer">
+                        <i class="fas fa-credit-card mr-3"></i>
+                        Pay $1,000 Deposit to Start
+                    </div>
+                    <div class="text-sm text-gray-600 mt-2">Secure payment via Bonsai</div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-16">
+                    <div>
+                        <div class="text-base mb-3">Client Signature:</div>
+                        <div class="border-b border-gray-400 pb-3 mb-4">_________________________________</div>
+                        <div class="text-sm text-gray-600">[Client Name]</div>
+                        <div class="text-sm text-gray-600">Date: _______________</div>
+                    </div>
+                    <div>
+                        <div class="text-base mb-3">Brillnt Representative:</div>
+                        <div class="border-b border-gray-400 pb-3 mb-4">_________________________________</div>
+                        <div class="text-sm text-gray-600">hello@brillnt.com | (313) 286-5990</div>
+                        <div class="text-sm text-gray-600">Date: _______________</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Contact Info -->
-            <div class="contact-info rounded-xl p-6 max-w-md">
-                <div class="text-lg font-medium text-black mb-2">hello@brillnt.com</div>
-                <div class="text-lg text-gray-600">(313) 286-5990</div>
-            </div>
-        </div>
-
-        <!-- Footer with Tagline -->
-        <div class="flex justify-between items-end mt-8">
-            <div class="text-sm text-gray-500 italic">Great websites begin with great planning.</div>
-            <div class="text-sm text-gray-400">3 of 3</div>
         </div>
     </div>
 </body>

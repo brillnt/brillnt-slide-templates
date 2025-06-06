@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 100vh;
+            height: 100vh;
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .title-text {
+            font-weight: 600;
+            color: #000000;
+        }
+        .subtitle-text {
+            font-weight: 500;
+            color: #6B7280;
+        }
+        .body-text {
+            font-weight: 400;
+            color: #000000;
+        }
+        .path-box {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col justify-between p-16">
+        <!-- Header with Logo -->
+        <div class="flex justify-between items-start mb-16">
+            <img src="../../assets/brillnt-logo--black.png" alt="brillnt." class="h-8">
+            <div class="text-right">
+                <div class="text-sm text-gray-500 font-medium">John Boros, Keylight Development</div>
+                <div class="text-sm text-gray-500">June 6, 2025</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col justify-center max-w-5xl">
+            <h1 class="title-text text-5xl mb-12 leading-tight">
+                How We'll Work Together
+            </h1>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <!-- Path A -->
+                <div class="path-box rounded-2xl p-8">
+                    <h3 class="title-text text-2xl mb-4">Path A: Streamlined Process</h3>
+                    <div class="subtitle-text text-lg mb-6">(3-5 days)</div>
+                    <div class="body-text text-base mb-4">If you have your content and materials prepared:</div>
+                    <ul class="body-text text-base space-y-3">
+                        <li>• We'll review, organize, and optimize your content for our creative process</li>
+                        <li>• Define the technical features that support your business goals</li>
+                        <li>• Create your detailed timeline with clear, reliable milestones</li>
+                    </ul>
+                </div>
+
+                <!-- Path B -->
+                <div class="path-box rounded-2xl p-8">
+                    <h3 class="title-text text-2xl mb-4">Path B: Comprehensive Discovery</h3>
+                    <div class="subtitle-text text-lg mb-6">(1-2 weeks)</div>
+                    <div class="body-text text-base mb-4">If you're still gathering materials:</div>
+                    <ul class="body-text text-base space-y-3">
+                        <li>• We'll create a content checklist tailored to your project needs</li>
+                        <li>• Help organize your existing materials effectively</li>
+                        <li>• Guide you through obtaining required assets, then complete the process outlined in Path A</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="body-text text-lg text-center text-gray-600">
+                We'll determine the best path based on your current preparation level.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-end text-sm text-gray-400">
+            <div>Discovery & Planning Agreement</div>
+            <div>2 of 6</div>
+        </div>
+    </div>
+</body>
+</html>
+
