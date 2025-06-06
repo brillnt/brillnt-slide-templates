@@ -16,10 +16,10 @@
  * const result = await processor.processTemplate('template.html', config);
  */
 
-const TokenExtractor = require('./TokenExtractor');
-const TokenReplacer = require('./TokenReplacer');
-const ConfigValidator = require('./ConfigValidator');
-const TemplateProcessor = require('./TemplateProcessor');
+const TokenExtractor = require('./token-extractor');
+const TokenReplacer = require('./token-replacer');
+const ConfigValidator = require('./config-validator');
+const TemplateProcessor = require('./template-processor');
 
 module.exports = {
     TokenExtractor,

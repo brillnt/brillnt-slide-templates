@@ -1,101 +1,61 @@
-#!/usr/bin/env node
+/**
+ * Modern PDF Generation Script - Uses new modular system
+ */
 
 const fs = require('fs');
 const path = require('path');
-const { resolveConfigPath } = require('./template-config');
-const { getDisplayPath, getDisplayDir } = require('./path-utils');
-const { processConfig } = require('./config-system');
+const { spawn } = require('child_process');
+const { resolveConfigPath } = require('./lib/template');
+const { processConfig } = require('./lib/config');
+const { getDisplayPath, getDisplayDir } = require('./lib/utils');
 
 /**
- * PDF Generation Script for Client Slides
- * 
- * Usage: node scripts/generate-pdf.js <config-file>
- * Example: node scripts/generate-pdf.js john-boros
- * 
- * Reads config to get client name, finds slides, and generates PDFs
+ * Generate client slug from client name
  */
-
-function showUsage() {
-    console.log('📋 Usage: node scripts/generate-pdf.js <config-file>');
-    console.log('📋 Example: node scripts/generate-pdf.js john-boros');
-    console.log('📋 NPM: npm run pdf -- john-boros');
-    console.log('');
-    console.log('📁 Available clients:');
-    
-    const exportsDir = path.join(__dirname, '..', 'exports');
-    if (fs.existsSync(exportsDir)) {
-        const clients = fs.readdirSync(exportsDir).filter(item => 
-            fs.statSync(path.join(exportsDir, item)).isDirectory()
-        );
-        if (clients.length > 0) {
-            clients.forEach(client => console.log(`   - ${client}`));
-        } else {
-            console.log('   (No client slides found)');
-        }
-    } else {
-        console.log('   (No exports directory found)');
-    }
-}
-
 function generateClientSlug(clientName) {
     return clientName
         .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/-+/g, '-') // Replace multiple hyphens with single
-        .trim();
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
 }
 
-function generatePDF(configFileInput) {
+/**
+ * Generate PDFs for a client
+ */
+async function generatePDF(configFile) {
     try {
-        if (!configFileInput) {
-            showUsage();
-            process.exit(1);
-        }
+        console.log('🚀 PDF Generation Starting...');
+        console.log('');
         
-        // Resolve config path using smart conventions
-        const configFile = resolveConfigPath(configFileInput);
-        console.log(`📄 Config: "${configFileInput}" → "${configFile}"`);
+        // Resolve config path
+        const resolvedConfigPath = resolveConfigPath(configFile);
+        console.log(`📖 Config: ${getDisplayPath(resolvedConfigPath)}`);
         
-        // Check if config file exists
-        if (!fs.existsSync(configFile)) {
-            console.error(`❌ Config file "${configFile}" not found`);
-            console.error(`💡 Tip: Use "john-boros" to auto-find "configs/john-boros.json"`);
-            process.exit(1);
-        }
-        
-        // Read and parse config to get client name
-        console.log(`📖 Reading config from: ${configFile}`);
-        const configContent = fs.readFileSync(configFile, 'utf8');
-        let config;
-        
-        try {
-            const rawConfig = JSON.parse(configContent);
-            
-            // Process config with defaults and validation
-            config = processConfig(rawConfig);
-            
-        } catch (parseError) {
-            if (parseError.message.includes('Configuration validation failed')) {
-                console.error(parseError.message);
-                process.exit(1);
-            } else {
-                console.error(`❌ Invalid JSON in config file: ${parseError.message}`);
-                process.exit(1);
-            }
-        }
-        
-        // Generate client slug from actual client name (same logic as customize script)
+        // Read and process config
+        const rawConfig = JSON.parse(fs.readFileSync(resolvedConfigPath, 'utf8'));
+        const config = processConfig(rawConfig);
         const clientSlug = generateClientSlug(config.client_name);
-        console.log(`👤 Client: "${config.client_name}" → "${clientSlug}"`);
+        
+        console.log(`👤 Client: ${config.client_name}`);
+        console.log(`📂 Slug: ${clientSlug}`);
+        console.log('');
+        
+        // Check if slides directory exists
+        const exportsDir = path.join(__dirname, '..', 'exports');
+        if (!fs.existsSync(exportsDir)) {
+            console.log('   (No exports directory found)');
+            console.log('   Run customize first: npm run customize -- <template> <config>');
+            return { success: false, error: 'No exports directory found' };
+        }
         
         // Find slides directory
         const slidesDir = path.join(__dirname, '..', 'exports', clientSlug, 'slides');
         if (!fs.existsSync(slidesDir)) {
-            console.error(`❌ Client slides not found: ${slidesDir}`);
-            console.error(`💡 Run customization first: npm run customize -- discovery ${configFileInput}`);
-            showUsage();
-            process.exit(1);
+            console.log(`   (No slides found for client: ${clientSlug})`);
+            console.log('   Run customize first: npm run customize -- <template> <config>');
+            return { success: false, error: 'No slides found for client' };
         }
         
         // Create PDFs directory
@@ -105,41 +65,64 @@ function generatePDF(configFileInput) {
             console.log(`📁 Created PDFs directory: ${getDisplayDir(pdfsDir)}`);
         }
         
-        console.log(`🚀 Generating PDFs for client: ${clientSlug}`);
-        console.log(`📁 Slides source: ${getDisplayDir(slidesDir)}`);
-        console.log(`📁 PDFs output: ${getDisplayDir(pdfsDir)}`);
-        console.log('');
+        // Run PDF conversion
+        const convertScript = path.join(__dirname, 'lib', 'pdf.js');
         
-        // Use existing convert-to-pdf script with custom output
-        const { spawn } = require('child_process');
-        const convertScript = path.join(__dirname, 'convert-to-pdf.js');
-        
-        const child = spawn('node', [convertScript, slidesDir, pdfsDir], {
-            stdio: 'inherit',
-            cwd: path.join(__dirname, '..')
-        });
-        
-        child.on('close', (code) => {
-            if (code === 0) {
-                console.log('');
-                console.log(`🎉 PDF generation complete!`);
-                console.log(`📁 PDFs saved to: ${getDisplayDir(pdfsDir)}`);
-            } else {
-                console.error(`❌ PDF generation failed with code ${code}`);
-                process.exit(1);
-            }
+        return new Promise((resolve) => {
+            const child = spawn('node', [convertScript, slidesDir], {
+                stdio: 'inherit',
+                cwd: path.join(__dirname, '..')
+            });
+            
+            child.on('close', (code) => {
+                if (code === 0) {
+                    console.log('');
+                    console.log('✅ PDF Generation Complete!');
+                    console.log(`📁 PDFs saved to: ${getDisplayDir(pdfsDir)}`);
+                    resolve({ success: true, clientSlug, pdfsDir });
+                } else {
+                    console.error('❌ PDF generation failed');
+                    resolve({ success: false, error: 'PDF conversion failed' });
+                }
+            });
         });
         
     } catch (error) {
-        console.error(`❌ Error: ${error.message}`);
-        process.exit(1);
+        console.error('❌ PDF generation failed:', error.message);
+        return { success: false, error: error.message };
     }
+}
+
+// Command line usage
+function showUsage() {
+    console.log('Usage: node generate-pdf.js <config>');
+    console.log('');
+    console.log('Examples:');
+    console.log('  node generate-pdf.js john-boros');
+    console.log('  node generate-pdf.js configs/maria.json');
+    console.log('');
+    console.log('Note: Run customize first to generate slides');
 }
 
 // Main execution
 if (require.main === module) {
     const configFile = process.argv[2];
-    generatePDF(configFile);
+    
+    if (!configFile) {
+        showUsage();
+        process.exit(1);
+    }
+    
+    generatePDF(configFile)
+        .then(result => {
+            if (!result.success) {
+                process.exit(1);
+            }
+        })
+        .catch(error => {
+            console.error('❌ Unexpected error:', error.message);
+            process.exit(1);
+        });
 }
 
 module.exports = { generatePDF };

@@ -4,9 +4,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const TokenExtractor = require('./TokenExtractor');
-const TokenReplacer = require('./TokenReplacer');
-const ConfigValidator = require('./ConfigValidator');
+const TokenExtractor = require('./token-extractor');
+const TokenReplacer = require('./token-replacer');
+const ConfigValidator = require('./config-validator');
 
 class TemplateProcessor {
     constructor(options = {}) {

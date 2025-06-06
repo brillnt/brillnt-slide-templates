@@ -24,7 +24,7 @@ class TokenReplacer {
         
         // Extract tokens if not provided
         if (!tokens) {
-            const TokenExtractor = require('./TokenExtractor');
+            const TokenExtractor = require('./token-extractor');
             tokens = TokenExtractor.extractTokens(content);
         }
         
@@ -157,7 +157,7 @@ class TokenReplacer {
      */
     static previewReplacements(content, config, tokens = null) {
         if (!tokens) {
-            const TokenExtractor = require('./TokenExtractor');
+            const TokenExtractor = require('./token-extractor');
             tokens = TokenExtractor.extractTokens(content);
         }
         

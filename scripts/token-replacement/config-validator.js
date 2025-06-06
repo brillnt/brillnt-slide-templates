@@ -73,7 +73,7 @@ class ConfigValidator {
      * @returns {Object} - Validation result for single token
      */
     static validateSingleToken(config, token, options) {
-        const TokenReplacer = require('./TokenReplacer');
+        const TokenReplacer = require('./token-replacer');
         
         try {
             const value = TokenReplacer.getNestedValue(config, token);

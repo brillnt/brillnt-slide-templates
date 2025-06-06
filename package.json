@@ -5,12 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "customize": "node scripts/customize-template.js",
-    "pdf": "node scripts/generate-pdf.js",
-    "build": "node scripts/build-client.js",
-    "convert": "node scripts/convert-to-pdf.js",
-    "convert:discovery": "node scripts/convert-to-pdf.js templates/discovery-planning pdfs/discovery-planning",
-    "convert:all": "npm run convert:discovery"
+    "customize": "node scripts/customize.js",
+    "pdf": "node scripts/generate-pdf.js", 
+    "build": "node scripts/build.js"
   },
   "repository": {
     "type": "git",
