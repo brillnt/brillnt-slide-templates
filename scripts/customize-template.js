@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { resolveTemplateName, resolveConfigPath, getTemplateMapping } = require('./template-config');
 const { getDisplayPath, getDisplayDir } = require('./path-utils');
+const { processConfig } = require('./config-system');
 
 /**
  * Template Customization Script
@@ -138,18 +139,19 @@ function customizeTemplate(templateNameInput, configFileInput) {
         let config;
         
         try {
-            config = JSON.parse(configContent);
+            const rawConfig = JSON.parse(configContent);
+            
+            // Process config with defaults and enhanced validation
+            config = processConfig(rawConfig);
+            
         } catch (parseError) {
-            console.error(`❌ Invalid JSON in config file: ${parseError.message}`);
-            process.exit(1);
-        }
-        
-        // Validate config
-        const validationErrors = validateConfig(config);
-        if (validationErrors.length > 0) {
-            console.error('❌ Config validation errors:');
-            validationErrors.forEach(error => console.error(`   - ${error}`));
-            process.exit(1);
+            if (parseError.message.includes('Configuration validation failed')) {
+                console.error(parseError.message);
+                process.exit(1);
+            } else {
+                console.error(`❌ Invalid JSON in config file: ${parseError.message}`);
+                process.exit(1);
+            }
         }
         
         console.log(`✅ Config validated successfully`);

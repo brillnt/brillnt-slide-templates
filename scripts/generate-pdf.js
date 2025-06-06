@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { resolveConfigPath } = require('./template-config');
 const { getDisplayPath, getDisplayDir } = require('./path-utils');
+const { processConfig } = require('./config-system');
 
 /**
  * PDF Generation Script for Client Slides
@@ -69,15 +70,19 @@ function generatePDF(configFileInput) {
         let config;
         
         try {
-            config = JSON.parse(configContent);
+            const rawConfig = JSON.parse(configContent);
+            
+            // Process config with defaults and validation
+            config = processConfig(rawConfig);
+            
         } catch (parseError) {
-            console.error(`❌ Invalid JSON in config file: ${parseError.message}`);
-            process.exit(1);
-        }
-        
-        if (!config.client_name) {
-            console.error(`❌ Config file missing required "client_name" field`);
-            process.exit(1);
+            if (parseError.message.includes('Configuration validation failed')) {
+                console.error(parseError.message);
+                process.exit(1);
+            } else {
+                console.error(`❌ Invalid JSON in config file: ${parseError.message}`);
+                process.exit(1);
+            }
         }
         
         // Generate client slug from actual client name (same logic as customize script)
