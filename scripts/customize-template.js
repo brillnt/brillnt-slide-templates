@@ -2,18 +2,31 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolveTemplateName, resolveConfigPath, getTemplateMapping } = require('./template-config');
 
 /**
  * Template Customization Script
  * 
  * Usage: node scripts/customize-template.js <template-name> <config-file>
- * Example: node scripts/customize-template.js discovery-planning-agreement configs/john-boros.json
+ * Example: node scripts/customize-template.js discovery john-boros
+ * 
+ * Template shortcuts: discovery, agreement, planning → discovery-planning-agreement
+ * Config resolution: john-boros → configs/john-boros.json
  */
 
 function showUsage() {
     console.log('📋 Usage: node scripts/customize-template.js <template-name> <config-file>');
-    console.log('📋 Example: node scripts/customize-template.js discovery-planning-agreement configs/john-boros.json');
+    console.log('📋 Example: node scripts/customize-template.js discovery john-boros');
+    console.log('📋 NPM: npm run customize -- discovery john-boros');
     console.log('');
+    
+    console.log('🔗 Template shortcuts:');
+    const mapping = getTemplateMapping();
+    Object.entries(mapping).forEach(([shortcut, fullName]) => {
+        console.log(`   ${shortcut} → ${fullName}`);
+    });
+    console.log('');
+    
     console.log('📁 Available templates:');
     const templatesDir = path.join(__dirname, '..', 'templates');
     if (fs.existsSync(templatesDir)) {
@@ -22,6 +35,12 @@ function showUsage() {
         );
         templates.forEach(template => console.log(`   - ${template}`));
     }
+    console.log('');
+    
+    console.log('📄 Config resolution:');
+    console.log('   john-boros → configs/john-boros.json');
+    console.log('   configs/my-client.json → configs/my-client.json');
+    console.log('   ./my-config.json → ./my-config.json');
 }
 
 function validateConfig(config) {
@@ -80,13 +99,21 @@ function generateClientSlug(clientName) {
         .trim();
 }
 
-function customizeTemplate(templateName, configFile) {
+function customizeTemplate(templateNameInput, configFileInput) {
     try {
         // Validate inputs
-        if (!templateName || !configFile) {
+        if (!templateNameInput || !configFileInput) {
             showUsage();
             process.exit(1);
         }
+        
+        // Resolve template name and config path using smart conventions
+        const templateName = resolveTemplateName(templateNameInput);
+        const configFile = resolveConfigPath(configFileInput);
+        
+        console.log(`🔗 Template: "${templateNameInput}" → "${templateName}"`);
+        console.log(`📄 Config: "${configFileInput}" → "${configFile}"`);
+        console.log('');
         
         // Check if template exists
         const templateDir = path.join(__dirname, '..', 'templates', templateName);
@@ -100,6 +127,7 @@ function customizeTemplate(templateName, configFile) {
         // Check if config file exists
         if (!fs.existsSync(configFile)) {
             console.error(`❌ Config file "${configFile}" not found`);
+            console.error(`💡 Tip: Use "john-boros" to auto-find "configs/john-boros.json"`);
             process.exit(1);
         }
         
