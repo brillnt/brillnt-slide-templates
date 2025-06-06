@@ -117,7 +117,10 @@ async function convertTemplate(templateDir, outputDir) {
       console.log(`📋 Combined PDF created: ${combinedPdf}`);
     } catch (error) {
       console.log(`⚠️  Could not create combined PDF: ${error.message}`);
-      console.log(`💡 Install poppler-utils for combined PDF support: apt-get install poppler-utils`);
+      console.log(`💡 Install poppler for combined PDF support:`);
+      console.log(`   macOS: brew install poppler`);
+      console.log(`   Linux: apt-get install poppler-utils`);
+      console.log(`   Windows: Download from https://poppler.freedesktop.org/`);
     }
   }
   
