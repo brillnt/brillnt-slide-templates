@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .title-text {
+            font-weight: 600;
+            color: #000000;
+        }
+        .subtitle-text {
+            font-weight: 500;
+            color: #6B7280;
+        }
+        .body-text {
+            font-weight: 400;
+            color: #000000;
+        }
+        .investment-highlight {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col justify-between p-16">
+        <!-- Header with Logo -->
+        <div class="flex justify-between items-start mb-16">
+            <img src="../../assets/brillnt-logo--black.png" alt="brillnt." class="h-8">
+            <div class="text-right">
+                <div class="text-sm text-gray-500 font-medium">[Client Name]</div>
+                <div class="text-sm text-gray-500">[Date]</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col justify-center max-w-4xl">
+            <h1 class="title-text text-6xl mb-6 leading-tight">
+                Discovery & Planning<br>
+                Agreement
+            </h1>
+            
+            <p class="subtitle-text text-2xl mb-16 leading-relaxed max-w-3xl">
+                Setting the Foundation for Your Website Project Success
+            </p>
+            
+            <div class="body-text text-xl mb-12 leading-relaxed max-w-3xl">
+                This Discovery & Planning phase creates a detailed roadmap that ensures your project runs smoothly and delivers exactly what you need.
+            </div>
+
+            <!-- Investment Highlight -->
+            <div class="investment-highlight rounded-2xl p-8 max-w-2xl">
+                <div class="text-sm font-medium text-gray-600 mb-2">Planning Phase Investment</div>
+                <div class="text-4xl font-semibold text-black mb-2">$1,500</div>
+                <div class="text-base text-gray-600">$1,000 deposit to start • Applies toward total project cost</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-end text-sm text-gray-400">
+            <div>Discovery & Planning Agreement</div>
+            <div>1 of 3</div>
+        </div>
+    </div>
+</body>
+</html>
+

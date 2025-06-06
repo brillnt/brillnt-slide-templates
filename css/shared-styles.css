@@ -1,0 +1,95 @@
+/* Brillnt Slide Templates - Shared Styles */
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Base slide container - Apple-inspired design */
+.slide-container {
+    width: 1280px; 
+    min-height: 720px; 
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Typography hierarchy */
+.title-text {
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.1;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.2;
+}
+
+.subtitle-text {
+    font-weight: 500;
+    color: #6B7280;
+    line-height: 1.3;
+}
+
+.body-text {
+    font-weight: 400;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* Brand colors */
+.text-brillnt-black { color: #000000; }
+.text-brillnt-gray { color: #6B7280; }
+.text-brillnt-light-gray { color: #9CA3AF; }
+.bg-brillnt-black { background-color: #000000; }
+.bg-brillnt-white { background-color: #ffffff; }
+.bg-brillnt-light-gray { background-color: #F9FAFB; }
+
+/* Common components */
+.investment-highlight {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+}
+
+.timeline-highlight {
+    background: #000000;
+    color: #ffffff;
+}
+
+.signature-box {
+    border: 2px solid #E5E7EB;
+    background: #FAFAFA;
+}
+
+.contact-info {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+}
+
+/* Logo sizing standards */
+.logo-header { height: 2rem; } /* 32px - for slide headers */
+.logo-cover { height: 4rem; }  /* 64px - for cover slides */
+.logo-large { height: 6rem; }  /* 96px - for emphasis */
+
+/* Responsive adjustments for print/PDF */
+@media print {
+    .slide-container {
+        page-break-after: always;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .slide-container:last-child {
+        page-break-after: avoid;
+    }
+}
+
+/* Animation classes for presentations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

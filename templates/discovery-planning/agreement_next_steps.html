@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .title-text {
+            font-weight: 600;
+            color: #000000;
+        }
+        .section-title {
+            font-weight: 600;
+            color: #000000;
+        }
+        .body-text {
+            font-weight: 400;
+            color: #374151;
+        }
+        .signature-box {
+            border: 2px solid #E5E7EB;
+            background: #FAFAFA;
+        }
+        .contact-info {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header with Logo -->
+        <div class="flex justify-between items-start mb-12">
+            <img src="../../assets/brillnt-logo--black.png" alt="brillnt." class="h-8">
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="title-text text-5xl mb-16 leading-tight">
+                Agreement & Next Steps
+            </h1>
+            
+            <!-- Key Terms Section -->
+            <div class="mb-16">
+                <h2 class="section-title text-2xl mb-8">Key Terms</h2>
+                <div class="space-y-4 max-w-4xl">
+                    <div class="body-text text-lg leading-relaxed">
+                        $1,000 deposit required to begin • Planning phase is non-refundable
+                    </div>
+                    <div class="body-text text-lg leading-relaxed">
+                        No obligation to proceed with full project after planning
+                    </div>
+                    <div class="body-text text-lg leading-relaxed">
+                        All information remains confidential
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ready to Begin Section -->
+            <div class="mb-12">
+                <h2 class="section-title text-2xl mb-6">Ready to Begin?</h2>
+                <p class="body-text text-lg leading-relaxed max-w-4xl mb-8">
+                    By signing below, you're taking the first step toward a website that truly serves your business goals.
+                </p>
+                
+                <!-- Signature Area -->
+                <div class="signature-box rounded-xl p-6 max-w-2xl mb-8">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <div class="text-sm text-gray-600 mb-2">Client Signature</div>
+                            <div class="border-b-2 border-gray-300 w-80 h-8"></div>
+                        </div>
+                        <div class="ml-8">
+                            <div class="text-sm text-gray-600 mb-2">Date</div>
+                            <div class="border-b-2 border-gray-300 w-32 h-8"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info rounded-xl p-6 max-w-md">
+                <div class="text-lg font-medium text-black mb-2">hello@brillnt.com</div>
+                <div class="text-lg text-gray-600">(313) 286-5990</div>
+            </div>
+        </div>
+
+        <!-- Footer with Tagline -->
+        <div class="flex justify-between items-end mt-8">
+            <div class="text-sm text-gray-500 italic">Great websites begin with great planning.</div>
+            <div class="text-sm text-gray-400">3 of 3</div>
+        </div>
+    </div>
+</body>
+</html>
+
