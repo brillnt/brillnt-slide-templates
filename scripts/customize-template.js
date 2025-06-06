@@ -167,6 +167,26 @@ function customizeTemplate(templateNameInput, configFileInput) {
             console.log(`📁 Created output directory: ${outputDir}`);
         }
         
+        // Copy assets to client directory for self-contained package
+        const assetsSourceDir = path.join(__dirname, '..', 'assets');
+        const assetsTargetDir = path.join(__dirname, '..', 'exports', clientSlug, 'assets');
+        
+        if (fs.existsSync(assetsSourceDir)) {
+            if (!fs.existsSync(assetsTargetDir)) {
+                fs.mkdirSync(assetsTargetDir, { recursive: true });
+            }
+            
+            // Copy all files from assets directory
+            const assetFiles = fs.readdirSync(assetsSourceDir);
+            assetFiles.forEach(file => {
+                const sourcePath = path.join(assetsSourceDir, file);
+                const targetPath = path.join(assetsTargetDir, file);
+                fs.copyFileSync(sourcePath, targetPath);
+            });
+            
+            console.log(`📁 Copied ${assetFiles.length} asset files to client directory`);
+        }
+        
         // Get all HTML files from template
         const templateFiles = fs.readdirSync(templateDir)
             .filter(file => file.endsWith('.html'))
@@ -183,7 +203,10 @@ function customizeTemplate(templateNameInput, configFileInput) {
             const templateContent = fs.readFileSync(inputPath, 'utf8');
             
             // Replace placeholders
-            const customizedContent = replacePlaceholders(templateContent, config);
+            let customizedContent = replacePlaceholders(templateContent, config);
+            
+            // Update asset paths to use local assets directory
+            customizedContent = customizedContent.replace(/\.\.\/\.\.\/assets\//g, '../assets/');
             
             // Write customized file
             fs.writeFileSync(outputPath, customizedContent, 'utf8');
