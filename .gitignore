@@ -38,3 +38,8 @@ build/
 *.bak
 *.swp
 *.swo
+
+# Temporary exports (keep directory structure but ignore contents)
+exports/*
+!exports/.gitkeep
+

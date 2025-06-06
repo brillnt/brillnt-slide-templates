@@ -138,11 +138,11 @@ Usage:
   node scripts/convert-to-pdf.js <template-dir> [output-dir]
   
 Examples:
-  # Convert discovery-planning template with dynamic sizing
-  node scripts/convert-to-pdf.js templates/discovery-planning pdfs/discovery-planning
+  # Convert discovery-planning-agreement template with dynamic sizing
+  node scripts/convert-to-pdf.js templates/discovery-planning-agreement exports/discovery-planning-agreement
   
   # Convert single slide
-  node scripts/convert-to-pdf.js templates/discovery-planning/cover.html cover.pdf
+  node scripts/convert-to-pdf.js templates/discovery-planning-agreement/00-cover.html cover.pdf
     `);
     process.exit(1);
   }
@@ -155,7 +155,7 @@ Examples:
     convertToPDF(input, outputFile);
   } else {
     // Template directory conversion
-    const outputDir = output || `pdfs/${path.basename(input)}`;
+    const outputDir = output || `exports/${path.basename(input)}`;
     convertTemplate(input, outputDir);
   }
 }
