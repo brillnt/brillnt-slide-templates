@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Scope Approval</div>
+                <div>Technical Specifications</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Technical Specifications
+            </h1>
+            
+            <div class="grid grid-cols-2 gap-12">
+                <!-- Platform & Infrastructure -->
+                <div>
+                    <h2 class="text-2xl font-semibold text-black mb-8">Platform & Infrastructure</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                            <h3 class="font-semibold text-black mb-3">Content Management System</h3>
+                            <p class="text-gray-700">{{cms_platform}}</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                            <h3 class="font-semibold text-black mb-3">Hosting Solution</h3>
+                            <p class="text-gray-700">{{hosting_solution}}</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                            <h3 class="font-semibold text-black mb-3">Domain Management</h3>
+                            <p class="text-gray-700">{{domain_management}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features & Integrations -->
+                <div>
+                    <h2 class="text-2xl font-semibold text-black mb-8">Features & Integrations</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-green-50 rounded-2xl p-6 border border-green-200">
+                            <h3 class="font-semibold text-green-800 mb-3">Core Features</h3>
+                            <ul class="text-green-700 space-y-2">
+                                <li>• Mobile-responsive design</li>
+                                <li>• Contact form functionality</li>
+                                <li>• SEO optimization</li>
+                                <li>• Google Analytics integration</li>
+                                <li>• {{additional_core_feature}}</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 rounded-2xl p-6 border border-blue-200">
+                            <h3 class="font-semibold text-blue-800 mb-3">Third-Party Integrations</h3>
+                            <ul class="text-blue-700 space-y-2">
+                                <li>• {{integration_1}}</li>
+                                <li>• {{integration_2}}</li>
+                                <li>• {{integration_3}}</li>
+                                <li>• {{integration_4}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Direction -->
+            <div class="mt-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Design Direction</h2>
+                
+                <div class="bg-purple-50 rounded-3xl p-8 border border-purple-200">
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-purple-800 mb-3">Visual Style</h3>
+                            <p class="text-purple-700">{{visual_style}}</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-purple-800 mb-3">Color Palette</h3>
+                            <p class="text-purple-700">{{color_palette}}</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-purple-800 mb-3">Design Inspiration</h3>
+                            <p class="text-purple-700">{{design_inspiration}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance & Security -->
+            <div class="mt-12">
+                <h2 class="text-2xl font-semibold text-black mb-6">Performance & Security</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-orange-50 rounded-2xl p-6 border border-orange-200">
+                        <h3 class="font-semibold text-orange-800 mb-3">Performance Standards</h3>
+                        <ul class="text-orange-700 space-y-2">
+                            <li>• Fast loading times (under 3 seconds)</li>
+                            <li>• Optimized images and assets</li>
+                            <li>• Mobile performance optimization</li>
+                            <li>• Search engine optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 rounded-2xl p-6 border border-red-200">
+                        <h3 class="font-semibold text-red-800 mb-3">Security Features</h3>
+                        <ul class="text-red-700 space-y-2">
+                            <li>• SSL certificate included</li>
+                            <li>• Regular security updates</li>
+                            <li>• Secure contact form processing</li>
+                            <li>• Backup and recovery systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

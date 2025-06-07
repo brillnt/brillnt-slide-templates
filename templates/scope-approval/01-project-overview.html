@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Scope Approval</div>
+                <div>Project Overview</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Website Scope Summary
+            </h1>
+            
+            <!-- Core Objectives -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-6">Core Objectives</h2>
+                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-200">
+                    <p class="text-blue-800 text-lg leading-relaxed">
+                        {{project_objectives}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Target Audience -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-6">Target Audience</h2>
+                <div class="bg-green-50 rounded-3xl p-8 border border-green-200">
+                    <p class="text-green-800 text-lg leading-relaxed">
+                        {{target_audience}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Features & Functionality -->
+            <div>
+                <h2 class="text-2xl font-semibold text-black mb-6">Key Features & Functionality</h2>
+                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-200">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-black mb-4">Core Features</h3>
+                            <ul class="text-gray-700 space-y-2">
+                                <li>• {{feature_1}}</li>
+                                <li>• {{feature_2}}</li>
+                                <li>• {{feature_3}}</li>
+                                <li>• {{feature_4}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-black mb-4">Additional Functionality</h3>
+                            <ul class="text-gray-700 space-y-2">
+                                <li>• {{additional_feature_1}}</li>
+                                <li>• {{additional_feature_2}}</li>
+                                <li>• {{additional_feature_3}}</li>
+                                <li>• {{additional_feature_4}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

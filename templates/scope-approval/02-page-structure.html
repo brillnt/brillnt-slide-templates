@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Scope Approval</div>
+                <div>Page Structure & Content</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Page Structure & Content
+            </h1>
+            
+            <div class="space-y-8">
+                <!-- Homepage -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-2xl font-semibold text-black">Homepage</h2>
+                        <div class="text-sm text-gray-600">Primary landing page</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Key Sections:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• {{homepage_section_1}}</li>
+                                <li>• {{homepage_section_2}}</li>
+                                <li>• {{homepage_section_3}}</li>
+                                <li>• {{homepage_section_4}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Content Needed from You:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Main headline and tagline</li>
+                                <li>• Business description (2-3 paragraphs)</li>
+                                <li>• Hero image or video</li>
+                                <li>• Call-to-action text</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Page -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-2xl font-semibold text-black">About Page</h2>
+                        <div class="text-sm text-gray-600">Company story and credentials</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Key Sections:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• {{about_section_1}}</li>
+                                <li>• {{about_section_2}}</li>
+                                <li>• {{about_section_3}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Content Needed from You:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Company/personal story</li>
+                                <li>• Mission statement</li>
+                                <li>• Team photos and bios</li>
+                                <li>• Credentials/certifications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services/Products Page -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-2xl font-semibold text-black">Services/Products Page</h2>
+                        <div class="text-sm text-gray-600">Detailed offerings and pricing</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Key Sections:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• {{services_section_1}}</li>
+                                <li>• {{services_section_2}}</li>
+                                <li>• {{services_section_3}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Content Needed from You:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Service/product descriptions</li>
+                                <li>• Pricing information</li>
+                                <li>• Process explanations</li>
+                                <li>• Before/after examples or case studies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Page -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-2xl font-semibold text-black">Contact Page</h2>
+                        <div class="text-sm text-gray-600">Contact information and forms</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Key Elements:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Contact form with {{contact_form_fields}}</li>
+                                <li>• Business information and hours</li>
+                                <li>• Location/map if applicable</li>
+                                <li>• Social media links</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-black mb-3">Content Needed from You:</h3>
+                            <ul class="text-gray-600 space-y-1">
+                                <li>• Contact information verification</li>
+                                <li>• Business hours</li>
+                                <li>• Preferred contact methods</li>
+                                <li>• Social media account links</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Pages -->
+                <div class="bg-blue-50 rounded-2xl p-6 border border-blue-200">
+                    <h3 class="font-semibold text-blue-800 mb-3">Additional Pages:</h3>
+                    <p class="text-blue-700">{{additional_pages}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

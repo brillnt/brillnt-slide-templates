@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Scope Approval</div>
+                <div>Approval & Next Steps</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Approval & Next Steps
+            </h1>
+            
+            <!-- Revision & Change Process -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Revision & Change Process</h2>
+                
+                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-200">
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-blue-800 mb-3">Design Phase</h3>
+                            <p class="text-blue-700">This project includes <strong>{{revision_rounds_design}} rounds of revisions</strong> during the design phase.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-blue-800 mb-3">Development Phase</h3>
+                            <p class="text-blue-700">This project includes <strong>{{revision_rounds_development}} rounds of revisions</strong> during development.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-blue-800 mb-3">Scope Changes</h3>
+                            <p class="text-blue-700">Changes beyond the approved scope will be quoted separately and require written approval.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Approval Signatures -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Project Approval</h2>
+                
+                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-200">
+                    <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+                        By signing below, you confirm that this scope accurately represents your project requirements and you approve moving forward with development.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-12">
+                        <div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Client Signature:</label>
+                                <div class="border-b-2 border-gray-300 h-12"></div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Client Name (Print):</label>
+                                <div class="border-b-2 border-gray-300 h-12"></div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Date:</label>
+                                <div class="border-b-2 border-gray-300 h-12"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Brillnt Representative:</label>
+                                <div class="border-b-2 border-gray-300 h-12"></div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Name (Print):</label>
+                                <div class="border-b-2 border-gray-300 h-12"></div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Date:</label>
+                                <div class="border-b-2 border-gray-300 h-12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Next Steps After Approval</h2>
+                
+                <div class="bg-green-50 rounded-3xl p-8 border border-green-200">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-green-800 mb-4">Immediate Actions</h3>
+                            <ol class="text-green-700 space-y-2">
+                                <li>1. Development deposit payment</li>
+                                <li>2. Content collection begins</li>
+                                <li>3. Project kickoff call scheduled</li>
+                            </ol>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-green-800 mb-4">Project Launch</h3>
+                            <ol class="text-green-700 space-y-2">
+                                <li>4. Design phase starts</li>
+                                <li>5. Regular progress updates begin</li>
+                                <li>6. Development and launch preparation</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="bg-black text-white rounded-3xl p-8">
+                <div class="text-center">
+                    <p class="text-lg mb-4">
+                        If anything in this scope needs clarification or adjustment, please let us know before signing.
+                    </p>
+                    <p class="text-lg mb-6">
+                        We want to ensure complete alignment before beginning development.
+                    </p>
+                    
+                    <div class="text-xl font-semibold">
+                        <span class="text-blue-400">hello@brillnt.com</span> | <span class="text-blue-400">(313) 286-5990</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Message -->
+            <div class="mt-8 text-center">
+                <p class="text-gray-600 italic">
+                    This scope document ensures we're building exactly what you need. Clear scope leads to successful projects, and we're committed to delivering exceptional results within this framework.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
