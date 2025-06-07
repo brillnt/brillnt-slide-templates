@@ -30,13 +30,13 @@ npm run customize -- discovery-agreement configs/prod/maria.json
 # Verify outputs:
 ls -la exports/[client-slug]/
 ls -la exports/[client-slug]/slides/     # 6 HTML files
-ls -la exports/[client-slug]/assets/     # Logo files copied
+# Note: NO assets folder should be created
 ```
 
 **Required Checks:**
 - [ ] Client directory created with correct slug
 - [ ] All 6 HTML files generated
-- [ ] Assets copied to client package
+- [ ] NO assets folder created (assets referenced via ../../assets/ paths)
 - [ ] Token replacement working (check client name in files)
 - [ ] No unreplaced `{{tokens}}` in generated HTML
 
@@ -69,7 +69,7 @@ ls -la exports/[client-slug]/
 - [ ] Complete client package structure created
 - [ ] All HTML files generated correctly
 - [ ] All PDF files generated correctly
-- [ ] Assets copied correctly
+- [ ] NO assets folder created (logos reference ../../assets/ directly)
 - [ ] No errors in terminal output
 
 ### ✅ **Development Workflow Verification**
@@ -98,10 +98,11 @@ npm run serve -- discovery-agreement
 
 **Required Asset Path Checks:**
 - [ ] **Development:** `{{asset_path}}` resolves to `../../assets`
-- [ ] **Production:** `{{asset_path}}` resolves to `../assets`
+- [ ] **Production:** `{{asset_path}}` resolves to `../../assets` (references original assets)
 - [ ] Templates use `{{asset_path}}/brillnt-logo.png` syntax
 - [ ] No hardcoded asset paths in template files
 - [ ] Both development and production logos display correctly
+- [ ] NO asset copying occurs (cleaner client packages)
 
 ### ✅ **Visual Verification (CRITICAL)**
 
@@ -192,11 +193,8 @@ grep "María González" exports/[client-slug]/slides/00-cover.html
 
 ### **File Structure Verification**
 ```bash
-# Expected structure after build
+# Expected structure after build (NO assets folder)
 exports/[client-slug]/
-├── assets/
-│   ├── brillnt-logo.png
-│   └── brillnt-logo--black.png
 ├── pdfs/
 │   ├── 00-cover.pdf
 │   ├── 01-title_overview.pdf
