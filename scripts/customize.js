@@ -146,11 +146,19 @@ async function customizeTemplate(templateName, configFile) {
         
         // Set up output directories
         const outputDir = path.join(__dirname, '..', 'exports', clientSlug, 'slides');
+        const clientAssetsDir = path.join(__dirname, '..', 'exports', clientSlug, 'assets');
+        
+        // Copy assets to client directory for self-contained packages
+        const sourceAssetsDir = path.join(__dirname, '..', 'assets');
+        if (fs.existsSync(sourceAssetsDir)) {
+            copyDirectory(sourceAssetsDir, clientAssetsDir);
+            console.log(`📁 Copied assets to: ${getDisplayDir(clientAssetsDir)}`);
+        }
         
         // Add asset_path for production builds (relative to exports/client/slides/)
         const configWithAssetPath = {
             ...config,
-            asset_path: '../../assets'
+            asset_path: '../assets'
         };
         
         // Process templates
