@@ -69,7 +69,7 @@ async function generatePDF(configFile) {
         const convertScript = path.join(__dirname, 'lib', 'pdf.js');
         
         return new Promise((resolve) => {
-            const child = spawn('node', [convertScript, slidesDir], {
+            const child = spawn('node', [convertScript, slidesDir, pdfsDir], {
                 stdio: 'inherit',
                 cwd: path.join(__dirname, '..')
             });
