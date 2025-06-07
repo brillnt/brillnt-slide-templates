@@ -1,27 +1,70 @@
 # Brillnt Slide Templates
 
-Professional slide templates for client presentations, built with HTML/CSS and optimized for PDF export.
+Professional slide templates for client presentations with automated token replacement, development workflows, and PDF generation.
 
 ## 🎯 Overview
 
-This repository contains reusable slide templates that maintain Brillnt's Apple-inspired design aesthetic. Each template is built with clean HTML/CSS and can be easily customized for different clients and projects.
+This repository provides a modern, automated system for creating client presentations using reusable slide templates. Built with HTML/CSS and featuring token-based customization, the system generates professional PDFs while maintaining Brillnt's Apple-inspired design aesthetic.
+
+**Key Features:**
+- **Token-based customization** - No manual editing required
+- **Development server** - Live preview with hot reload
+- **Automated PDF generation** - Professional-quality exports
+- **Config-driven workflow** - JSON-based client configurations
+- **Clean client packages** - Self-contained presentation files
+- **Asset path management** - Dynamic asset referencing
 
 ## 📁 Repository Structure
 
 ```
 brillnt-slide-templates/
-├── README.md                    # This file
-├── assets/                      # Logo files and other assets
+├── README.md                    # This documentation
+├── CONTRIBUTING.md              # Development guidelines and verification procedures
+├── package.json                 # Dependencies and npm scripts
+├── .gitignore                   # Git ignore patterns
+├── assets/                      # Logo files and shared assets
 │   ├── brillnt-logo.png        # White logo for dark backgrounds
 │   └── brillnt-logo--black.png # Black logo for light backgrounds
-├── css/
-│   └── shared-styles.css        # Common styles across all templates
-└── templates/
-    └── discovery-planning/      # Discovery & Planning Agreement slides
-        ├── cover.html          # Cover slide with logo
-        ├── title_overview.html # Title and investment overview
-        ├── what_you_get.html   # Deliverables and commitments
-        └── agreement_next_steps.html # Terms and signature
+├── configs/                     # Client configuration files
+│   ├── dev/                     # Development configurations
+│   │   └── discovery-agreement.json
+│   └── prod/                    # Production client configurations
+│       ├── maria.json
+│       └── john-boros.json
+├── templates/                   # Template directories
+│   └── discovery-agreement/     # Discovery & Planning Agreement template
+│       ├── 00-cover.html       # Cover slide with logo and client name
+│       ├── 01-title_overview.html # Title and investment overview
+│       ├── 02-how_we_work_together.html # Process and collaboration
+│       ├── 03-your_commitment.html # Client responsibilities
+│       ├── 04-what_you_receive.html # Deliverables and outcomes
+│       └── 05-agreement_next_steps.html # Terms and next steps
+├── scripts/                     # Build and development scripts
+│   ├── build.js                # Complete workflow (customize + PDF)
+│   ├── customize.js            # Template customization with token replacement
+│   ├── generate-pdf.js         # PDF generation from HTML slides
+│   ├── serve.js                # Development server for template preview
+│   ├── lib/                    # Shared utilities
+│   │   ├── config.js           # Configuration processing
+│   │   ├── pdf.js              # PDF generation utilities
+│   │   ├── template.js         # Template resolution and processing
+│   │   └── utils.js            # Common utilities
+│   └── token-replacement/      # Token replacement system
+│       ├── index.js            # Main template processor
+│       ├── config-validator.js # Configuration validation
+│       ├── template-processor.js # Template processing logic
+│       ├── token-extractor.js  # Token extraction from templates
+│       └── token-replacer.js   # Token replacement engine
+├── tests/                       # Test infrastructure
+│   ├── fixtures/               # Test data and expected outputs
+│   ├── unit/                   # Unit tests
+│   ├── integration/            # Integration tests
+│   └── e2e/                    # End-to-end tests
+├── exports/                     # Generated client packages (git ignored)
+│   └── [client-slug]/          # Individual client presentation packages
+│       ├── slides/             # Customized HTML slides
+│       └── pdfs/               # Generated PDF files
+└── temp/                        # Development server temporary files (git ignored)
 ```
 
 ## 🎨 Design System
@@ -33,168 +76,419 @@ brillnt-slide-templates/
 
 ### **Typography**
 - **Font:** Inter (Google Fonts)
-- **Weights:** 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold)
+- **Weights:** 300 (Light), 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold)
 - **Hierarchy:** Title (600), Section (600), Subtitle (500), Body (400)
 
 ### **Logo Usage**
 - **White logo** (`brillnt-logo.png`) for dark backgrounds
 - **Black logo** (`brillnt-logo--black.png`) for light backgrounds
-- **Sizes:** Header (32px), Cover (64px), Large (96px)
+- **Dynamic paths** using `{{asset_path}}` token system
 
 ## 🚀 Quick Start
 
-### **1. Clone the Repository**
+### **1. Clone and Setup**
 ```bash
 git clone https://github.com/brillnt/brillnt-slide-templates.git
 cd brillnt-slide-templates
+npm install
 ```
 
-### **2. Customize for Your Client**
-1. Navigate to the template you want to use (e.g., `templates/discovery-planning/`)
-2. Edit the HTML files with your client's information:
-   - Replace `[Client Name]` with actual client name
-   - Replace `[Date]` with project date
-   - Update any project-specific content
-
-### **3. Preview Your Changes**
-- Open any HTML file in your web browser
-- All styles and assets are linked relatively
-- Test in Chrome/Safari for best PDF export results
-
-### **4. Export to PDF**
-Choose your preferred method:
-
-#### **Option A: Browser Print-to-PDF**
-1. Open the HTML file in Chrome or Safari
-2. Press `Cmd+P` (Mac) or `Ctrl+P` (Windows)
-3. Select "Save as PDF"
-4. Choose "More settings" → "Paper size: A4" or "Letter"
-5. Set margins to "Minimum" for best results
-
-#### **Option B: Via Manus Chat**
-1. Upload your HTML files to the chat
-2. Request PDF export
-3. Download the generated PDF
-
-#### **Option C: Command Line (Advanced)**
+### **2. Development Workflow**
+Preview templates during development:
 ```bash
-# Using Puppeteer (requires Node.js)
-npx puppeteer print cover.html cover.pdf
+# Start development server
+npm run serve -- discovery-agreement
 
-# Using wkhtmltopdf
-wkhtmltopdf --page-size A4 --orientation Landscape cover.html cover.pdf
+# Open browser to: http://localhost:3000
+# Live preview with development configuration
 ```
 
-## 📝 Editing Guidelines
+### **3. Production Workflow**
+Generate client presentations:
+```bash
+# Complete workflow (customize + PDF generation)
+npm run build -- discovery-agreement configs/prod/maria.json
 
-### **Client Information**
-Always update these placeholders:
-- `[Client Name]` → Actual client name
-- `[Date]` → Project date
-- `[Project Name]` → Specific project title (if applicable)
-
-### **Content Customization**
-- **Investment amounts:** Update pricing as needed
-- **Timeline:** Adjust project duration
-- **Terms:** Modify agreement terms for specific projects
-- **Contact info:** Ensure current contact information
-
-### **Asset Paths**
-All asset paths are relative to the template folder:
-```html
-<!-- Correct path from template folder -->
-<img src="../../assets/brillnt-logo--black.png" alt="brillnt.">
+# Output: exports/mara-gonzlez-caf-esperanza/
+#   ├── slides/     # Customized HTML files
+#   └── pdfs/       # Individual + combined PDFs
 ```
+
+### **4. Individual Commands**
+```bash
+# Template customization only
+npm run customize -- discovery-agreement configs/prod/maria.json
+
+# PDF generation only (after customization)
+npm run pdf -- configs/prod/maria.json
+```
+
+## ⚙️ Configuration System
+
+### **Config File Structure**
+Client configurations use JSON format with nested objects:
+
+```json
+{
+  "client_name": "María González, Café Esperanza",
+  "date": "June 7, 2025",
+  "payment": {
+    "amount": "$1,500",
+    "description": "Planning Phase Investment",
+    "link": "https://bonsai.com/pay/keylight-discovery",
+    "provider": "Bonsai"
+  }
+}
+```
+
+### **Token System**
+Templates use mustache-style tokens that are automatically replaced:
+
+| Token | Description | Example |
+|-------|-------------|---------|
+| `{{client_name}}` | Client name and company | "María González, Café Esperanza" |
+| `{{date}}` | Project date | "June 7, 2025" |
+| `{{payment.amount}}` | Investment amount | "$1,500" |
+| `{{payment.description}}` | Payment description | "Planning Phase Investment" |
+| `{{payment.link}}` | Payment URL | "https://bonsai.com/pay/..." |
+| `{{payment.provider}}` | Payment provider | "Bonsai" |
+| `{{asset_path}}` | Dynamic asset path | "../../assets" (system-managed) |
+
+### **Config Locations**
+- **Development:** `configs/dev/` - For template development and testing
+- **Production:** `configs/prod/` - For actual client presentations
+
+## 🛠 Development Workflow
+
+### **Template Development**
+```bash
+# Start development server
+npm run serve -- discovery-agreement
+
+# Features:
+# - Live preview at http://localhost:3000
+# - Development configuration automatically loaded
+# - Asset paths resolve to project root
+# - No file generation (served in-memory)
+```
+
+### **Creating New Configs**
+```bash
+# Copy existing config
+cp configs/prod/maria.json configs/prod/new-client.json
+
+# Edit with client-specific information
+# Test with development server
+npm run serve -- discovery-agreement
+```
+
+### **Template Modification**
+1. Edit template files in `templates/discovery-agreement/`
+2. Use `{{token}}` syntax for dynamic content
+3. Use `{{asset_path}}/filename.png` for images
+4. Test with development server
+5. Verify with production build
+
+## 🏗 Production Workflow
+
+### **Client Package Generation**
+```bash
+# Generate complete client package
+npm run build -- discovery-agreement configs/prod/client.json
+
+# Output structure:
+exports/client-slug/
+├── slides/                    # Customized HTML files
+│   ├── 00-cover.html         # All tokens replaced
+│   ├── 01-title_overview.html
+│   └── ...
+└── pdfs/                     # Generated PDFs
+    ├── 00-cover.pdf          # Individual slide PDFs
+    ├── 01-title_overview.pdf
+    ├── ...
+    └── slides-combined.pdf   # All slides in one PDF
+```
+
+### **Client Slug Generation**
+Client names are automatically converted to URL-safe slugs:
+- "María González, Café Esperanza" → `mara-gonzlez-caf-esperanza`
+- "John Boros, Keylight Development" → `john-boros-keylight-development`
+
+### **Asset Path Resolution**
+- **Development:** `{{asset_path}}` → `../../assets` (temp to project root)
+- **Production:** `{{asset_path}}` → `../../assets` (exports/client/slides to project root)
+- **No asset copying** - templates reference original assets directly
+
+## 📋 Available Templates
+
+### **Discovery Agreement** (`discovery-agreement`)
+**Purpose:** Client agreement for project discovery and planning phase  
+**Slides:** 6 slides (Cover, Overview, Process, Commitment, Deliverables, Agreement)  
+**Use case:** Initial client engagement and planning phase setup  
+**Required tokens:** `client_name`, `date`, `payment.*`
+
+**Template files:**
+- `00-cover.html` - Cover slide with logo and client name
+- `01-title_overview.html` - Title and investment overview  
+- `02-how_we_work_together.html` - Process and collaboration details
+- `03-your_commitment.html` - Client responsibilities and expectations
+- `04-what_you_receive.html` - Deliverables and outcomes
+- `05-agreement_next_steps.html` - Terms, signatures, and next steps
 
 ## 🔧 Creating New Templates
 
-### **1. Create Template Folder**
+### **1. Template Directory Structure**
 ```bash
+# Create new template directory
 mkdir templates/your-new-template
+
+# Copy base structure from existing template
+cp templates/discovery-agreement/* templates/your-new-template/
 ```
 
-### **2. Copy Base Structure**
-```bash
-cp templates/discovery-planning/cover.html templates/your-new-template/
-# Edit as needed
-```
+### **2. Template File Naming**
+Use numbered prefixes for proper ordering:
+- `00-cover.html` - Cover slide
+- `01-title.html` - Title/overview
+- `02-content.html` - Main content slides
+- `99-final.html` - Final/signature slide
 
-### **3. Update Asset Paths**
-Ensure all asset references point to the correct location:
+### **3. Token Integration**
 ```html
-<img src="../../assets/brillnt-logo--black.png" alt="brillnt.">
-<link rel="stylesheet" href="../../css/shared-styles.css">
+<!-- Use tokens for dynamic content -->
+<h1>{{client_name}}</h1>
+<p>Date: {{date}}</p>
+
+<!-- Use asset_path token for images -->
+<img src="{{asset_path}}/brillnt-logo.png" alt="brillnt">
+
+<!-- Support nested object tokens -->
+<span>{{payment.amount}}</span>
+<a href="{{payment.link}}">Pay Now</a>
 ```
 
-### **4. Follow Design System**
-- Use shared CSS classes from `shared-styles.css`
-- Maintain consistent typography hierarchy
-- Follow the Apple-inspired aesthetic
-- Keep layouts clean and minimal
-
-## 📋 Template Checklist
-
-Before using any template:
-- [ ] Client name updated
-- [ ] Date updated  
-- [ ] Investment amounts correct
-- [ ] Contact information current
-- [ ] All placeholder text replaced
-- [ ] Asset paths working
-- [ ] Tested in browser
-- [ ] PDF export tested
-
-## 🎯 Available Templates
-
-### **Discovery & Planning Agreement**
-**Purpose:** Client agreement for project planning phase  
-**Slides:** 4 (Cover, Overview, Deliverables, Agreement)  
-**Use case:** Initial client engagement and planning phase setup
-
-*More templates coming soon...*
-
-## 🔄 Version Control
-
-### **Making Changes**
+### **4. Development Config**
+Create development configuration:
 ```bash
-# Make your edits
-git add .
-git commit -m "Update discovery template for [Client Name]"
-git push origin main
+# Create dev config for new template
+cp configs/dev/discovery-agreement.json configs/dev/your-new-template.json
+
+# Edit with appropriate test data
+# Test with: npm run serve -- your-new-template
 ```
 
-### **Creating Client-Specific Branches**
+## 📖 API Reference
+
+### **npm Scripts**
+
+#### **`npm run serve -- <template-name>`**
+Start development server for template preview
+- **Arguments:** Template directory name
+- **Config:** Automatically loads `configs/dev/<template-name>.json`
+- **Output:** HTTP server at `http://localhost:3000`
+- **Features:** Live preview, development asset paths
+
+#### **`npm run build -- <template> <config>`**
+Complete workflow: customize templates and generate PDFs
+- **Arguments:** Template name, config file path
+- **Output:** Complete client package in `exports/`
+- **Includes:** HTML slides, individual PDFs, combined PDF
+
+#### **`npm run customize -- <template> <config>`**
+Template customization with token replacement
+- **Arguments:** Template name, config file path  
+- **Output:** Customized HTML files in `exports/<client-slug>/slides/`
+- **Features:** Token replacement, asset path resolution
+
+#### **`npm run pdf -- <config>`**
+PDF generation from existing HTML slides
+- **Arguments:** Config file path
+- **Input:** HTML files in `exports/<client-slug>/slides/`
+- **Output:** PDF files in `exports/<client-slug>/pdfs/`
+
+### **Template and Config Resolution**
+
+#### **Template Shortcuts**
+- `discovery` → `discovery-agreement`
+- `agreement` → `discovery-agreement`
+- `planning` → `discovery-agreement`
+
+#### **Config Resolution**
+- `maria` → `configs/prod/maria.json`
+- `john-boros` → `configs/prod/john-boros.json`
+- `configs/prod/client.json` → Direct path
+
+### **Command Examples**
 ```bash
-# Create branch for specific client
-git checkout -b client/john-boros
-# Make client-specific changes
-git commit -m "Customize for John Boros project"
+# Using shortcuts
+npm run build -- discovery maria
+npm run build -- agreement john-boros
+
+# Using full paths
+npm run build -- discovery-agreement configs/prod/maria.json
+npm run customize -- discovery-agreement configs/dev/discovery-agreement.json
 ```
 
-## 🛠 Troubleshooting
+## 🧪 Testing and Verification
 
-### **Assets Not Loading**
-- Check file paths are relative to the HTML file location
-- Ensure asset files exist in the `assets/` folder
-- Verify file names match exactly (case-sensitive)
+### **Manual Verification**
+```bash
+# Test complete workflow
+npm run build -- discovery-agreement configs/prod/maria.json
 
-### **PDF Export Issues**
-- Use Chrome or Safari for best results
-- Set print margins to "Minimum"
-- Choose landscape orientation for slide format
-- Test with "Print Preview" before saving
+# Verify outputs
+ls -la exports/mara-gonzlez-caf-esperanza/
+ls -la exports/mara-gonzlez-caf-esperanza/slides/    # 6 HTML files
+ls -la exports/mara-gonzlez-caf-esperanza/pdfs/     # 7 PDF files
 
-### **Styling Problems**
-- Ensure `shared-styles.css` is linked correctly
-- Check for typos in CSS class names
-- Verify Tailwind CSS CDN is loading
-- Test in incognito/private browsing mode
+# Visual verification
+open exports/mara-gonzlez-caf-esperanza/slides/00-cover.html
+```
+
+### **Development Guidelines**
+See [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive development guidelines including:
+- Explicit verification procedures
+- Visual testing requirements
+- Error handling verification
+- Cross-config testing procedures
+
+### **Test Infrastructure**
+```bash
+# Run basic infrastructure tests
+npm test
+
+# Individual test categories (when implemented)
+npm run test:unit
+npm run test:integration
+npm run test:e2e
+```
+
+## 🔍 Troubleshooting
+
+### **Token Replacement Issues**
+```bash
+# Check for unreplaced tokens
+grep -r "{{" exports/client-slug/slides/
+
+# Common issues:
+# - Missing token in config file
+# - Typo in token name
+# - Nested object path incorrect (payment.amount)
+```
+
+### **Asset Path Problems**
+```bash
+# Verify asset files exist
+ls -la assets/
+
+# Check asset_path token resolution
+# Development: {{asset_path}} → ../../assets
+# Production: {{asset_path}} → ../../assets
+
+# Visual verification: logos should display in browser
+```
+
+### **Development Server Issues**
+```bash
+# Port already in use
+pkill -f "node.*serve"
+npm run serve -- discovery-agreement
+
+# Config file not found
+ls -la configs/dev/discovery-agreement.json
+
+# Template directory not found
+ls -la templates/discovery-agreement/
+```
+
+### **PDF Generation Problems**
+```bash
+# Check HTML files exist first
+ls -la exports/client-slug/slides/
+
+# Verify PDF output directory
+ls -la exports/client-slug/pdfs/
+
+# Check for PDF generation errors in terminal output
+```
+
+### **Config Validation Errors**
+```bash
+# Validate JSON syntax
+cat configs/prod/client.json | python -m json.tool
+
+# Check required fields
+# - client_name (string)
+# - date (string)  
+# - payment.amount (string)
+# - payment.description (string)
+# - payment.link (string)
+# - payment.provider (string)
+```
+
+## 🔄 Migration Guide
+
+### **From Manual Template System**
+If migrating from the old manual editing system:
+
+1. **Convert placeholders to tokens:**
+   ```html
+   <!-- Old -->
+   [Client Name] → {{client_name}}
+   [Date] → {{date}}
+   [Investment Amount] → {{payment.amount}}
+   
+   <!-- New -->
+   <h1>{{client_name}}</h1>
+   <p>{{date}}</p>
+   <span>{{payment.amount}}</span>
+   ```
+
+2. **Update asset paths:**
+   ```html
+   <!-- Old -->
+   <img src="../../assets/brillnt-logo.png">
+   
+   <!-- New -->
+   <img src="{{asset_path}}/brillnt-logo.png">
+   ```
+
+3. **Create config files:**
+   ```bash
+   # Create client config from existing project
+   cp configs/prod/maria.json configs/prod/new-client.json
+   # Edit with client-specific data
+   ```
+
+4. **Test with new system:**
+   ```bash
+   npm run build -- discovery-agreement configs/prod/new-client.json
+   ```
+
+## 🛡 Development Standards
+
+### **Code Standards**
+- **ES Modules (ESM)** - All scripts use `import/export`
+- **Token-based templates** - No hardcoded client data
+- **Config-driven** - All customization via JSON configs
+- **Systematic verification** - Explicit testing of all outputs
+
+### **File Naming Conventions**
+- **Templates:** `00-name.html` (numbered for ordering)
+- **Configs:** `client-name.json` (kebab-case)
+- **Scripts:** `action-name.js` (kebab-case)
+
+### **Asset Management**
+- **Single source of truth** - Assets in `/assets/` directory
+- **Dynamic paths** - Use `{{asset_path}}` token
+- **No duplication** - Templates reference original assets
 
 ## 📞 Support
 
-For questions about these templates:
+For questions about this template system:
 - **Email:** hello@brillnt.com
 - **Phone:** (313) 286-5990
+- **Documentation:** See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines
 
 ## 📄 License
 
@@ -202,53 +496,6 @@ These templates are proprietary to Brillnt, LLC. Internal use only.
 
 ---
 
-*Last updated: June 6, 2025*
-
-
-
-## 📄 PDF Conversion
-
-This repository now includes automated PDF conversion using Puppeteer for professional-quality exports.
-
-### **Quick PDF Generation**
-```bash
-# Install dependencies (one time)
-npm install
-
-# Convert Discovery & Planning template
-npm run convert:discovery
-
-# PDFs will be saved to pdfs/discovery-planning/
-```
-
-### **Available Scripts**
-- `npm run convert:discovery` - Convert Discovery & Planning template
-- `npm run convert:all` - Convert all available templates
-- `node scripts/convert-to-pdf.js [template-dir] [output-dir]` - Custom conversion
-
-### **PDF Quality Features**
-- **High-quality rendering** using Chrome's engine
-- **Perfect CSS support** for Tailwind and modern layouts
-- **Proper font rendering** for Inter and Google Fonts
-- **Print-optimized** margins and sizing
-- **Professional output** ready for client presentation
-
-See [PDF_CONVERSION.md](docs/PDF_CONVERSION.md) for detailed documentation.
-
-
-
-## ⚠️ Known Issues
-
-### **PDF Conversion**
-The automated PDF conversion works well but has some minor spacing/margin issues that are being refined. 
-
-**Current workaround:** 
-- Pull HTML files from this repo
-- Upload to Manus chat interface for high-quality PDF export
-- This provides perfect PDF output while we optimize the automated conversion
-
-**Future improvements:**
-- Fine-tune viewport and page sizing
-- Optimize margin and spacing calculations
-- Add print-specific CSS media queries
+*Last updated: June 7, 2025*
+*System version: 2.0 (Token-based automation)*
 
