@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Phase 2</div>
+                <div>Content & Preparation</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex items-center">
+            <div class="w-1/2">
+                <div class="inline-block bg-gray-100 text-gray-700 text-sm font-semibold px-4 py-2 rounded-full mb-6">Week 2</div>
+                <h1 class="text-5xl font-semibold text-black mb-8 leading-tight">
+                    Content &<br>Preparation
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    You gather your content while we prepare for design
+                </p>
+            </div>
+            
+            <div class="w-1/2 pl-16">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-3 h-3 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Content collection</h3>
+                            <p class="text-gray-600">Using our simple checklists and guides</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-3 h-3 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Asset organization</h3>
+                            <p class="text-gray-600">Ensure everything is ready for design</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-3 h-3 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Technical setup</h3>
+                            <p class="text-gray-600">Project tools and systems configuration</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-3 h-3 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Design preparation</h3>
+                            <p class="text-gray-600">Based on your approved scope</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-6 bg-gray-50 rounded-2xl border border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <div class="text-sm font-medium text-gray-600">Your role:</div>
+                            <div class="text-black">Provide content, images, and any existing materials</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
