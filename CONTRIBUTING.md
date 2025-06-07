@@ -242,6 +242,50 @@ Evidence:
 - Production builds use ../assets/ paths correctly
 ```
 
+## 🤖 AI-Specific Verification Guidelines
+
+### **Objective Observation Protocol**
+
+**Problem:** AI systems can be influenced by expectations, leading to "seeing" what they expect rather than what's actually there.
+
+**Solution:** Two-phase verification process based on **proof by contradiction** principles.
+
+#### **Phase 1: Objective Observation (Expect Nothing)**
+- **Mindset:** Look at outputs with zero expectations - imagine you might see anything (a green giraffe, random text, etc.)
+- **Process:** Record ONLY what text you can actually read, including font styles and positions
+- **Critical:** Do NOT look for specific elements you expect to see
+- **Document:** Everything visible without interpretation or assumptions
+
+#### **Phase 2: Verification Check (Proof by Contradiction)**
+- **Assumption:** Assume the system is broken
+- **Goal:** Try to prove it's broken through your objective observations
+- **Method:** Check if observations include expected elements:
+  - **Logo verification:** "brillnt." in elegant italic script font (NOT "brillnt" in any other font)
+  - **Content verification:** Specific text from config files
+  - **Layout verification:** Proper formatting and positioning
+- **Conclusion:** Only if you CANNOT prove it's broken after thorough testing, consider it working
+
+#### **Example Application:**
+```
+❌ Wrong Approach:
+"Looking for the brillnt logo... I can see it's working correctly"
+
+✅ Correct Approach:
+"Objective observation: I can read 'Discovery & Planning Agreement', 'brillnt' in standard font, 'Development Client, Dev Corp', '$1,500'...
+Verification check: Do my observations include 'brillnt.' in elegant italic script? No.
+Conclusion: Logo verification FAILS - broken image showing alt text"
+```
+
+#### **Logo Verification Specifics**
+- **Working logo:** "brillnt." in elegant italic script font
+- **Broken logo:** "brillnt" in any other font (this is alt text from broken image)
+- **Remember:** Just like seeing "Apple" in Times New Roman ≠ Apple logo, seeing "brillnt" in standard font ≠ brillnt logo
+
+#### **Key Insight: Separate Observation from Verification**
+Your expectations contaminate your observations. Force objectivity by observing first, verifying second.
+
+---
+
 ## Common Issues and Solutions
 
 ### **Image Assets Not Displaying**
