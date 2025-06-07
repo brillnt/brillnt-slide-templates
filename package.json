@@ -2,6 +2,7 @@
   "name": "brillnt-slide-templates",
   "version": "1.0.0",
   "description": "Professional slide templates for client presentations, built with HTML/CSS and optimized for PDF export.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

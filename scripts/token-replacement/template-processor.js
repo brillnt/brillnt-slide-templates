@@ -2,11 +2,11 @@
  * TemplateProcessor - Orchestrates the entire template processing workflow
  */
 
-const fs = require('fs');
-const path = require('path');
-const TokenExtractor = require('./token-extractor');
-const TokenReplacer = require('./token-replacer');
-const ConfigValidator = require('./config-validator');
+import fs from 'fs';
+import path from 'path';
+import TokenExtractor from './token-extractor.js';
+import TokenReplacer from './token-replacer.js';
+import ConfigValidator from './config-validator.js';
 
 class TemplateProcessor {
     constructor(options = {}) {
@@ -235,5 +235,5 @@ class TemplateProcessor {
     }
 }
 
-module.exports = TemplateProcessor;
+export default TemplateProcessor;
 

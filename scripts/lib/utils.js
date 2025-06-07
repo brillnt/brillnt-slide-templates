@@ -1,8 +1,14 @@
-const path = require('path');
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 /**
  * Utility functions for displaying clean paths in terminal output
  */
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Find the project root directory (where package.json is located)
 function findProjectRoot(startDir = __dirname) {
@@ -10,7 +16,6 @@ function findProjectRoot(startDir = __dirname) {
     
     while (currentDir !== path.dirname(currentDir)) {
         const packageJsonPath = path.join(currentDir, 'package.json');
-        const fs = require('fs');
         
         if (fs.existsSync(packageJsonPath)) {
             return currentDir;
@@ -59,7 +64,7 @@ function getDisplayDir(absolutePath) {
     return displayPath.endsWith('/') ? displayPath : displayPath + '/';
 }
 
-module.exports = {
+export {
     getDisplayPath,
     getDisplayDir,
     PROJECT_ROOT

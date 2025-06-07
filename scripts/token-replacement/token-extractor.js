@@ -2,8 +2,8 @@
  * TokenExtractor - Scans templates for {{tokens}} with caching support
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 class TokenExtractor {
     static cache = new Map();
@@ -135,5 +135,5 @@ class TokenExtractor {
     }
 }
 
-module.exports = TokenExtractor;
+export default TokenExtractor;
 

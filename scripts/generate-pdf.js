@@ -2,12 +2,17 @@
  * Modern PDF Generation Script - Uses new modular system
  */
 
-const fs = require('fs');
-const path = require('path');
-const { spawn } = require('child_process');
-const { resolveConfigPath } = require('./lib/template');
-const { processConfig } = require('./lib/config');
-const { getDisplayPath, getDisplayDir } = require('./lib/utils');
+import fs from 'fs';
+import path from 'path';
+import { spawn } from 'child_process';
+import { fileURLToPath } from 'url';
+import { resolveConfigPath } from './lib/template.js';
+import { processConfig } from './lib/config.js';
+import { getDisplayPath, getDisplayDir } from './lib/utils.js';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Generate client slug from client name
@@ -105,7 +110,9 @@ function showUsage() {
 }
 
 // Main execution
-if (require.main === module) {
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
     const configFile = process.argv[2];
     
     if (!configFile) {
@@ -125,5 +132,5 @@ if (require.main === module) {
         });
 }
 
-module.exports = { generatePDF };
+export { generatePDF };
 

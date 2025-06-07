@@ -47,7 +47,7 @@ function getTemplateMapping() {
     return TEMPLATE_SHORTCUTS;
 }
 
-module.exports = {
+export {
     resolveTemplateName,
     resolveConfigPath,
     getTemplateShortcuts,

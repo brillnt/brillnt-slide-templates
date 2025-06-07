@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 
-const puppeteer = require('puppeteer');
-const path = require('path');
-const fs = require('fs');
-const { getDisplayPath, getDisplayDir } = require('./utils');
+import puppeteer from 'puppeteer';
+import path from 'path';
+import fs from 'fs';
+import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
+import { getDisplayPath, getDisplayDir } from './utils.js';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function convertToPDF(htmlFile, outputFile, options = {}) {
   const browser = await puppeteer.launch({
@@ -112,7 +118,6 @@ async function convertTemplate(templateDir, outputDir) {
     const combinedPdf = path.join(outputDir, `${templateName}-combined.pdf`);
     
     try {
-      const { execSync } = require('child_process');
       const pdfFilesStr = pdfFiles.map(f => `"${f}"`).join(' ');
       execSync(`pdfunite ${pdfFilesStr} "${combinedPdf}"`);
       console.log(`📋 Combined PDF created: ${getDisplayPath(combinedPdf)}`);
@@ -131,7 +136,9 @@ async function convertTemplate(templateDir, outputDir) {
 }
 
 // Command line usage
-if (require.main === module) {
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
   const args = process.argv.slice(2);
   
   if (args.length === 0) {
@@ -164,5 +171,5 @@ Examples:
   }
 }
 
-module.exports = { convertToPDF, convertTemplate };
+export { convertToPDF, convertTemplate };
 

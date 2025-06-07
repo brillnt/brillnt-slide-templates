@@ -3,12 +3,17 @@
  * Works with any template structure and JSON configuration
  */
 
-const fs = require('fs');
-const path = require('path');
-const { TemplateProcessor } = require('./token-replacement');
-const { resolveTemplateName, resolveConfigPath } = require('./lib/template');
-const { processConfig } = require('./lib/config');
-const { getDisplayPath, getDisplayDir } = require('./lib/utils');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { TemplateProcessor } from './token-replacement/index.js';
+import { resolveTemplateName, resolveConfigPath } from './lib/template.js';
+import { processConfig } from './lib/config.js';
+import { getDisplayPath, getDisplayDir } from './lib/utils.js';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Copy directory recursively
@@ -190,7 +195,9 @@ function showUsage() {
 }
 
 // Main execution
-if (require.main === module) {
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
     const templateName = process.argv[2];
     const configFile = process.argv[3];
     
@@ -211,5 +218,5 @@ if (require.main === module) {
         });
 }
 
-module.exports = { customizeTemplate };
+export { customizeTemplate };
 

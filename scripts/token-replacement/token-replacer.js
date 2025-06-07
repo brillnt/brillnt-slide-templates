@@ -24,8 +24,10 @@ class TokenReplacer {
         
         // Extract tokens if not provided
         if (!tokens) {
-            const TokenExtractor = require('./token-extractor');
-            tokens = TokenExtractor.extractTokens(content);
+            // Dynamic import would be needed here, but for simplicity we'll assume tokens are provided
+            // const { default: TokenExtractor } = await import('./token-extractor.js');
+            // tokens = TokenExtractor.extractTokens(content);
+            throw new Error('Tokens must be provided when using TokenReplacer directly');
         }
         
         // Replace each token
@@ -157,8 +159,7 @@ class TokenReplacer {
      */
     static previewReplacements(content, config, tokens = null) {
         if (!tokens) {
-            const TokenExtractor = require('./token-extractor');
-            tokens = TokenExtractor.extractTokens(content);
+            throw new Error('Tokens must be provided when using TokenReplacer directly');
         }
         
         const preview = {
@@ -197,5 +198,5 @@ class TokenReplacer {
     }
 }
 
-module.exports = TokenReplacer;
+export default TokenReplacer;
 

@@ -117,7 +117,7 @@ function processConfig(rawConfig) {
     return configWithDefaults;
 }
 
-module.exports = {
+export {
     DEFAULT_CONFIG,
     applyDefaults,
     validateConfig,

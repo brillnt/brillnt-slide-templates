@@ -2,8 +2,8 @@
  * Modern Build Script - Combines customize and PDF generation
  */
 
-const { customizeTemplate } = require('./customize');
-const { generatePDF } = require('./generate-pdf');
+import { customizeTemplate } from './customize.js';
+import { generatePDF } from './generate-pdf.js';
 
 /**
  * Build complete client package (customize + PDF)
@@ -64,7 +64,9 @@ function showUsage() {
 }
 
 // Main execution
-if (require.main === module) {
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
     const templateName = process.argv[2];
     const configFile = process.argv[3];
     
@@ -85,5 +87,5 @@ if (require.main === module) {
         });
 }
 
-module.exports = { buildClient };
+export { buildClient };
 

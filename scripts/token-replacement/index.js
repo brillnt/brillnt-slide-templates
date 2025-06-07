@@ -6,7 +6,7 @@
  * token replacement logic.
  * 
  * @example
- * const { TemplateProcessor } = require('./token-replacement');
+ * import { TemplateProcessor } from './token-replacement/index.js';
  * 
  * const processor = new TemplateProcessor({
  *   errorHandling: 'warn',
@@ -16,31 +16,31 @@
  * const result = await processor.processTemplate('template.html', config);
  */
 
-const TokenExtractor = require('./token-extractor');
-const TokenReplacer = require('./token-replacer');
-const ConfigValidator = require('./config-validator');
-const TemplateProcessor = require('./template-processor');
+import TokenExtractor from './token-extractor.js';
+import TokenReplacer from './token-replacer.js';
+import ConfigValidator from './config-validator.js';
+import TemplateProcessor from './template-processor.js';
 
-module.exports = {
+export {
     TokenExtractor,
     TokenReplacer,
     ConfigValidator,
-    TemplateProcessor,
-    
-    // Convenience factory function
-    createProcessor: (options = {}) => new TemplateProcessor(options),
-    
-    // Quick processing function for simple use cases
-    processTemplate: async (templatePath, config, options = {}) => {
-        const processor = new TemplateProcessor(options);
-        return await processor.processTemplate(templatePath, config);
-    },
-    
-    // Quick token extraction
-    extractTokens: (templateContent) => TokenExtractor.extractTokens(templateContent),
-    
-    // Quick validation
-    validateConfig: (config, tokens, options = {}) => 
-        ConfigValidator.validateAgainstTokens(config, tokens, options)
+    TemplateProcessor
 };
+
+// Convenience factory function
+export const createProcessor = (options = {}) => new TemplateProcessor(options);
+
+// Quick processing function for simple use cases
+export const processTemplate = async (templatePath, config, options = {}) => {
+    const processor = new TemplateProcessor(options);
+    return await processor.processTemplate(templatePath, config);
+};
+
+// Quick token extraction
+export const extractTokens = (templateContent) => TokenExtractor.extractTokens(templateContent);
+
+// Quick validation
+export const validateConfig = (config, tokens, options = {}) => 
+    ConfigValidator.validateAgainstTokens(config, tokens, options);
 

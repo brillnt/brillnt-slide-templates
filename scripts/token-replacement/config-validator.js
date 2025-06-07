@@ -2,6 +2,8 @@
  * ConfigValidator - Validates configuration against required tokens
  */
 
+import TokenReplacer from './token-replacer.js';
+
 class ConfigValidator {
     /**
      * Validate config object against required tokens
@@ -73,8 +75,6 @@ class ConfigValidator {
      * @returns {Object} - Validation result for single token
      */
     static validateSingleToken(config, token, options) {
-        const TokenReplacer = require('./token-replacer');
-        
         try {
             const value = TokenReplacer.getNestedValue(config, token);
             
@@ -261,5 +261,5 @@ class ConfigValidator {
     }
 }
 
-module.exports = ConfigValidator;
+export default ConfigValidator;
 
