@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Communication Guidelines</div>
+                <div>Process & Best Practices</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Process & Best Practices
+            </h1>
+            
+            <!-- Feedback & Approval Process -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Feedback & Approval Process</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-blue-50 rounded-2xl p-8 border border-blue-200">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-4">💬 Giving Effective Feedback</h3>
+                        <ul class="space-y-2 text-blue-700">
+                            <li>• <strong>Be specific:</strong> Reference exact locations and elements</li>
+                            <li>• <strong>Be clear:</strong> Describe what you want changed and why</li>
+                            <li>• <strong>Be timely:</strong> Respond within agreed timeframes</li>
+                            <li>• <strong>Use our forms:</strong> Revision request forms ensure clarity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-50 rounded-2xl p-8 border border-green-200">
+                        <h3 class="text-xl font-semibold text-green-800 mb-4">✅ Approval Methods</h3>
+                        <ul class="space-y-2 text-green-700">
+                            <li>• <strong>Email approval:</strong> "I approve [specific item]" in writing</li>
+                            <li>• <strong>Signed documents:</strong> For major milestones and final approvals</li>
+                            <li>• <strong>Verbal approval:</strong> Followed by email confirmation</li>
+                            <li>• <strong>Platform approval:</strong> Using project management tool features</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Sharing & Organization -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">File Sharing & Organization</h2>
+                
+                <div class="bg-purple-50 rounded-3xl p-8 border border-purple-200">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-purple-800 mb-4">📁 File Sharing</h3>
+                            <ul class="space-y-2 text-purple-700">
+                                <li>• <strong>Method:</strong> {{file_sharing_method}}</li>
+                                <li>• <strong>Organization:</strong> Use our provided folder structure</li>
+                                <li>• <strong>File naming:</strong> Follow our naming conventions</li>
+                                <li>• <strong>Formats:</strong> We'll specify preferred formats for different content types</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-purple-800 mb-4">💾 File Access</h3>
+                            <ul class="space-y-2 text-purple-700">
+                                <li>• <strong>Design files:</strong> Available through project platform</li>
+                                <li>• <strong>Development progress:</strong> Live staging site for review</li>
+                                <li>• <strong>Final files:</strong> Complete package delivered at project end</li>
+                                <li>• <strong>Backup access:</strong> Files remain accessible for 90 days post-launch</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Communication -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Emergency & Urgent Communication</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-red-50 rounded-2xl p-8 border border-red-200">
+                        <h3 class="text-xl font-semibold text-red-800 mb-4">🚨 What Constitutes an Emergency</h3>
+                        <ul class="space-y-2 text-red-700">
+                            <li>• Website completely down after launch</li>
+                            <li>• Security issues or breaches</li>
+                            <li>• Critical functionality failures</li>
+                            <li>• Time-sensitive launch requirements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-orange-50 rounded-2xl p-8 border border-orange-200">
+                        <h3 class="text-xl font-semibold text-orange-800 mb-4">📞 Emergency Contact Process</h3>
+                        <ol class="space-y-2 text-orange-700">
+                            <li>1. <strong>Call immediately:</strong> (313) 286-5990</li>
+                            <li>2. <strong>Send follow-up email:</strong> Describe the issue in detail</li>
+                            <li>3. <strong>Text if no answer:</strong> Include "URGENT" in message</li>
+                            <li>4. <strong>Expect rapid response:</strong> Within 1 hour maximum</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Communication Best Practices -->
+            <div class="bg-black text-white rounded-3xl p-8">
+                <h2 class="text-2xl font-semibold mb-8">Communication Best Practices</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-blue-400 mb-4">For Efficient Communication</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• <strong>Subject lines:</strong> Include project name and specific topic</li>
+                            <li>• <strong>Single topics:</strong> One main topic per email when possible</li>
+                            <li>• <strong>Clear questions:</strong> Number multiple questions for easy response</li>
+                            <li>• <strong>Context:</strong> Include relevant background information</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-green-400 mb-4">For Project Success</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• <strong>Regular check-ins:</strong> Don't wait for problems to communicate</li>
+                            <li>• <strong>Honest feedback:</strong> Share concerns early rather than late</li>
+                            <li>• <strong>Positive updates:</strong> Let us know when things are going well</li>
+                            <li>• <strong>Questions welcome:</strong> No question is too small or basic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

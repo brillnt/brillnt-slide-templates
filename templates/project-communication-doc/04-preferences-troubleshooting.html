@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Communication Guidelines</div>
+                <div>Preferences & Troubleshooting</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Preferences & Troubleshooting
+            </h1>
+            
+            <!-- Communication Preferences -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Your Communication Preferences</h2>
+                
+                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-200">
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-blue-800 mb-4">Preferred Contact Method</h3>
+                            <div class="space-y-2 text-blue-700">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="rounded">
+                                    <span>Email</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="rounded">
+                                    <span>Phone</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="rounded">
+                                    <span>Text</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="rounded">
+                                    <span>Project Platform</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-blue-800 mb-4">Best Times to Reach You</h3>
+                            <div class="space-y-3 text-blue-700">
+                                <div>
+                                    <p class="font-medium">Days:</p>
+                                    <div class="space-x-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="rounded">
+                                            <span class="ml-2">Weekdays</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="rounded">
+                                            <span class="ml-2">Weekends</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium">Times:</p>
+                                    <div class="space-x-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="rounded">
+                                            <span class="ml-2">Morning</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="rounded">
+                                            <span class="ml-2">Afternoon</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="rounded">
+                                            <span class="ml-2">Evening</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="font-semibold text-blue-800 mb-4">Communication Frequency Preference</h3>
+                        <div class="space-y-2 text-blue-700">
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="frequency" class="rounded">
+                                <span>Daily updates during active phases</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="frequency" class="rounded">
+                                <span>Weekly updates only</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="frequency" class="rounded">
+                                <span>Milestone-based communication</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="frequency" class="rounded">
+                                <span>As-needed basis</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="font-semibold text-blue-800 mb-4">Special Considerations</h3>
+                        <textarea class="w-full p-4 border border-blue-300 rounded-lg" rows="3" placeholder="Any communication needs or preferences..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-semibold text-black mb-8">Troubleshooting Communication Issues</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-orange-50 rounded-2xl p-8 border border-orange-200">
+                        <h3 class="text-xl font-semibold text-orange-800 mb-4">🔍 If You're Not Hearing From Us</h3>
+                        <ol class="space-y-2 text-orange-700">
+                            <li>1. Check your spam/junk folder</li>
+                            <li>2. Verify we have correct contact information</li>
+                            <li>3. Check the project management platform</li>
+                            <li>4. Call or text for immediate response</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="bg-red-50 rounded-2xl p-8 border border-red-200">
+                        <h3 class="text-xl font-semibold text-red-800 mb-4">📢 If We're Not Hearing From You</h3>
+                        <ul class="space-y-2 text-red-700">
+                            <li>• We'll send a gentle reminder after 2 business days</li>
+                            <li>• Follow up with phone call after 3 business days</li>
+                            <li>• Discuss timeline adjustments if delays continue</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Misunderstanding Resolution -->
+            <div class="mb-12">
+                <div class="bg-purple-50 rounded-2xl p-8 border border-purple-200">
+                    <h3 class="text-xl font-semibold text-purple-800 mb-4">🤝 If There's a Misunderstanding</h3>
+                    <div class="text-purple-700 space-y-2">
+                        <p>• <strong>Address it immediately:</strong> Don't let small issues become big problems</p>
+                        <p>• <strong>Schedule a call:</strong> Sometimes voice communication resolves things faster</p>
+                        <p>• <strong>Document the resolution:</strong> Follow up with email summary of what was agreed</p>
+                        <p>• <strong>Learn from it:</strong> Adjust communication approach to prevent similar issues</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Message -->
+            <div class="bg-black text-white rounded-3xl p-8 text-center">
+                <h2 class="text-2xl font-semibold mb-6">Ready to Get Started?</h2>
+                <p class="text-lg mb-6 text-gray-300">
+                    Clear communication is the foundation of every successful project. We're committed to keeping you informed, involved, and confident throughout the entire process.
+                </p>
+                <div class="text-xl font-semibold">
+                    <span class="text-blue-400">hello@brillnt.com</span> | <span class="text-blue-400">(313) 286-5990</span>
+                </div>
+                <p class="text-gray-400 mt-4 italic">
+                    Questions about this communication plan? Let's discuss it during our kickoff call.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

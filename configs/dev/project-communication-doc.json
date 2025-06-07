@@ -1,0 +1,19 @@
+{
+  "client_name": "Development Client, Dev Corp",
+  "project_name": "Website Design & Development",
+  "project_manager_name": "Sarah Johnson",
+  "project_manager_email": "sarah@brillnt.com",
+  "project_manager_phone": "(313) 286-5991",
+  "lead_developer_name": "Mike Chen",
+  "lead_developer_email": "mike@brillnt.com",
+  "creative_director_name": "Alex Rivera",
+  "creative_director_email": "alex@brillnt.com",
+  "project_platform": "Asana",
+  "video_platform": "Zoom",
+  "file_sharing_method": "Google Drive",
+  "kickoff_call_date": "June 10, 2025 at 2:00 PM EST",
+  "design_review_date": "June 20, 2025 at 3:00 PM EST",
+  "prelaunch_review_date": "July 10, 2025 at 1:00 PM EST",
+  "training_session_date": "July 16, 2025 at 2:00 PM EST"
+}
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Project Communication Guidelines</div>
+                <div>Team & Contact Information</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Your Project Team
+            </h1>
+            
+            <!-- Team Members -->
+            <div class="grid grid-cols-2 gap-12 mb-12">
+                <!-- Project Manager -->
+                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-200">
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Project Manager</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-blue-800">{{project_manager_name}}</h3>
+                            <p class="text-blue-600">Your main point of contact</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-blue-700">📧 {{project_manager_email}}</div>
+                            <div class="text-blue-700">📱 {{project_manager_phone}}</div>
+                        </div>
+                        <div class="text-sm text-blue-600">
+                            <strong>Role:</strong> Project questions, updates, timeline coordination
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Developer -->
+                <div class="bg-green-50 rounded-3xl p-8 border border-green-200">
+                    <h2 class="text-2xl font-semibold text-green-800 mb-6">Lead Developer</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-green-800">{{lead_developer_name}}</h3>
+                            <p class="text-green-600">Technical implementation expert</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-green-700">📧 {{lead_developer_email}}</div>
+                        </div>
+                        <div class="text-sm text-green-600">
+                            <strong>Role:</strong> Technical questions, development updates, functionality
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Director -->
+                <div class="bg-purple-50 rounded-3xl p-8 border border-purple-200">
+                    <h2 class="text-2xl font-semibold text-purple-800 mb-6">Creative Director</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-purple-800">{{creative_director_name}}</h3>
+                            <p class="text-purple-600">Design and creative guidance</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-purple-700">📧 {{creative_director_email}}</div>
+                        </div>
+                        <div class="text-sm text-purple-600">
+                            <strong>Role:</strong> Design decisions, creative direction, visual feedback
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Office -->
+                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-200">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Main Office</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Brillnt Studio</h3>
+                            <p class="text-gray-600">General inquiries and support</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-gray-700">📧 hello@brillnt.com</div>
+                            <div class="text-gray-700">📱 (313) 286-5990</div>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            <strong>Hours:</strong> Monday-Friday, 9 AM - 5 PM EST
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="bg-black text-white rounded-3xl p-8">
+                <h2 class="text-2xl font-semibold mb-8">Contact Methods & Response Times</h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-blue-400 mb-4">📧 Email (Primary)</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Best for: Project updates, file sharing, formal approvals</li>
+                            <li>• Response time: Within 4 hours (business days)</li>
+                            <li>• Use for: Non-urgent questions, content submission, feedback</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-green-400 mb-4">📱 Phone/Text (Urgent)</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Best for: Urgent questions, quick clarifications</li>
+                            <li>• Response time: Within 1 hour (business days)</li>
+                            <li>• Use for: Time-sensitive issues, immediate concerns</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-purple-400 mb-4">💻 Project Platform</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Platform: {{project_platform}}</li>
+                            <li>• Use for: Viewing progress, accessing files, tracking milestones</li>
+                            <li>• Access: Login credentials provided after kickoff</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-yellow-400 mb-4">📹 Video Calls</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• Platform: {{video_platform}}</li>
+                            <li>• Frequency: At key project milestones</li>
+                            <li>• Purpose: Design reviews, feedback sessions, training</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
