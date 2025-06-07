@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .signature-line {
+            border-bottom: 2px solid #000;
+            display: inline-block;
+            min-width: 300px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Timeline Agreement</div>
+                <div>Commitments & Signatures</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Our Mutual Commitments
+            </h1>
+            
+            <div class="grid grid-cols-2 gap-12 mb-12">
+                <!-- Client Commitments -->
+                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-200">
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Your Commitments</h2>
+                    <p class="text-blue-700 mb-6">By signing below, you commit to:</p>
+                    
+                    <ul class="text-blue-700 space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Providing content according to the schedule above</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Responding to feedback requests within 2 business days</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Participating in scheduled calls and reviews</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Communicating any concerns promptly</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Brillnt Commitments -->
+                <div class="bg-green-50 rounded-3xl p-8 border border-green-200">
+                    <h2 class="text-2xl font-semibold text-green-800 mb-6">Our Commitments</h2>
+                    <p class="text-green-700 mb-6">We commit to:</p>
+                    
+                    <ul class="text-green-700 space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Delivering quality work according to this timeline</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Communicating proactively about any issues</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Maintaining professional standards throughout</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Supporting you through each phase of the project</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="bg-gray-50 rounded-3xl p-12 border border-gray-200">
+                <h2 class="text-2xl font-semibold text-black mb-8 text-center">Agreement Signatures</h2>
+                
+                <div class="space-y-12">
+                    <!-- Client Signature -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-black mb-6">Client Agreement</h3>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="mb-2 text-sm font-medium text-gray-600">Client Signature:</div>
+                                <div class="signature-line h-8"></div>
+                            </div>
+                            <div>
+                                <div class="mb-2 text-sm font-medium text-gray-600">Date:</div>
+                                <div class="signature-line h-8"></div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <div class="mb-2 text-sm font-medium text-gray-600">Client Name (Print):</div>
+                            <div class="signature-line h-8 w-96"></div>
+                        </div>
+                    </div>
+
+                    <!-- Brillnt Signature -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-black mb-6">Brillnt Agreement</h3>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <div class="mb-2 text-sm font-medium text-gray-600">Brillnt Representative:</div>
+                                <div class="signature-line h-8"></div>
+                            </div>
+                            <div>
+                                <div class="mb-2 text-sm font-medium text-gray-600">Date:</div>
+                                <div class="signature-line h-8"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mt-12 text-center">
+                <h2 class="text-2xl font-semibold text-black mb-4">Questions About the Timeline?</h2>
+                <p class="text-gray-600 mb-6">
+                    If you have any concerns about this schedule or need to discuss adjustments, 
+                    please let us know before signing. We want to ensure this timeline works for your needs and expectations.
+                </p>
+                
+                <div class="bg-black text-white rounded-2xl p-6 inline-block">
+                    <div class="text-lg font-semibold mb-2">Contact Information</div>
+                    <div>hello@brillnt.com | (313) 286-5990</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Timeline Agreement</div>
+                <div>Project Information</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <h1 class="text-5xl font-semibold text-black mb-12 leading-tight">
+                Project Information
+            </h1>
+            
+            <div class="bg-gray-50 rounded-3xl p-12 border border-gray-200">
+                <div class="grid grid-cols-2 gap-12">
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-2">Client</div>
+                            <div class="text-2xl font-semibold text-black">{{client_name}}</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-2">Project</div>
+                            <div class="text-2xl font-semibold text-black">{{project_name}}</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-2">Start Date</div>
+                            <div class="text-2xl font-semibold text-black">{{start_date}}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-2">Estimated Completion</div>
+                            <div class="text-2xl font-semibold text-black">{{completion_date}}</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-2">Total Duration</div>
+                            <div class="text-2xl font-semibold text-black">{{total_duration}} weeks</div>
+                        </div>
+                        
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-2">Project Type</div>
+                            <div class="text-2xl font-semibold text-black">Website Design & Development</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <h2 class="text-3xl font-semibold text-black mb-6">Timeline Overview</h2>
+                <p class="text-xl text-gray-600 leading-relaxed">
+                    This timeline is based on your approved project scope and assumes timely content delivery and feedback. 
+                    We've built in reasonable buffer time for revisions and unexpected needs.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
