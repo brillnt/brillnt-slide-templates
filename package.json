@@ -5,7 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node tests/infrastructure.test.js",
+    "test:unit": "echo \"Unit tests not implemented yet\"",
+    "test:integration": "echo \"Integration tests not implemented yet\"",
+    "test:e2e": "echo \"E2E tests not implemented yet\"",
     "customize": "node scripts/customize.js",
     "pdf": "node scripts/generate-pdf.js", 
     "build": "node scripts/build.js"
