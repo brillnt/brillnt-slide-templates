@@ -1,0 +1,11 @@
+{
+  "client_name": "Development Client, Dev Corp",
+  "date": "December 15, 2024",
+  "payment": {
+    "amount": "Pay $2,000",
+    "description": "Development Investment",
+    "provider": "DevPay",
+    "link": "https://example.com/dev-payment"
+  }
+}
+

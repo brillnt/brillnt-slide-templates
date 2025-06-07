@@ -149,8 +149,14 @@ async function customizeTemplate(templateName, configFile) {
         const assetsSourceDir = path.join(__dirname, '..', 'assets');
         const assetsTargetDir = path.join(__dirname, '..', 'exports', clientSlug, 'assets');
         
+        // Add asset_path for production builds (relative to exports/client/slides/)
+        const configWithAssetPath = {
+            ...config,
+            asset_path: '../assets'
+        };
+        
         // Process templates
-        const results = await processTemplateDirectory(templateDir, config, outputDir);
+        const results = await processTemplateDirectory(templateDir, configWithAssetPath, outputDir);
         
         // Copy assets
         if (fs.existsSync(assetsSourceDir)) {

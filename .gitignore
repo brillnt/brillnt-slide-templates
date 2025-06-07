@@ -43,3 +43,7 @@ build/
 exports/*
 !exports/.gitkeep
 
+
+# Temporary development files
+temp/
+

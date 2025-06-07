@@ -25,7 +25,7 @@ Before committing any changes, **ALL** of the following must be explicitly verif
 #### **1. Template Customization**
 ```bash
 # Test customize command
-npm run customize -- discovery maria
+npm run customize -- discovery-agreement configs/prod/maria.json
 
 # Verify outputs:
 ls -la exports/[client-slug]/
@@ -43,7 +43,7 @@ ls -la exports/[client-slug]/assets/     # Logo files copied
 #### **2. PDF Generation**
 ```bash
 # Test PDF generation
-npm run pdf -- maria
+npm run pdf -- configs/prod/maria.json
 
 # Verify outputs:
 ls -la exports/[client-slug]/pdfs/       # 7 PDF files
@@ -59,7 +59,7 @@ ls -la exports/[client-slug]/pdfs/       # 7 PDF files
 ```bash
 # Test complete workflow
 rm -rf exports/[client-slug]
-npm run build -- discovery maria
+npm run build -- discovery-agreement configs/prod/maria.json
 
 # Verify complete package:
 ls -la exports/[client-slug]/
@@ -71,6 +71,37 @@ ls -la exports/[client-slug]/
 - [ ] All PDF files generated correctly
 - [ ] Assets copied correctly
 - [ ] No errors in terminal output
+
+### ✅ **Development Workflow Verification**
+
+#### **8. Development Server (npm run serve)**
+```bash
+# Test development server
+npm run serve -- discovery-agreement
+
+# Open browser to: http://localhost:3000
+```
+
+**Required Development Server Checks:**
+- [ ] Server starts without errors
+- [ ] Index page lists all 6 slides
+- [ ] Individual slides load correctly
+- [ ] **Development logos display correctly** (using ../../assets/ path)
+- [ ] Development config data appears (Development Client, Dev Corp)
+- [ ] No broken images in development mode
+- [ ] Server can be stopped cleanly (Ctrl+C)
+
+#### **9. Asset Path Token System**
+```bash
+# Verify asset_path token replacement works in both contexts
+```
+
+**Required Asset Path Checks:**
+- [ ] **Development:** `{{asset_path}}` resolves to `../../assets`
+- [ ] **Production:** `{{asset_path}}` resolves to `../assets`
+- [ ] Templates use `{{asset_path}}/brillnt-logo.png` syntax
+- [ ] No hardcoded asset paths in template files
+- [ ] Both development and production logos display correctly
 
 ### ✅ **Visual Verification (CRITICAL)**
 
@@ -111,8 +142,8 @@ grep "{{" exports/[client-slug]/slides/*.html  # Should return no results
 #### **6. Edge Cases**
 ```bash
 # Test error scenarios
-npm run build -- nonexistent maria          # Should fail gracefully
-npm run build -- discovery nonexistent      # Should fail gracefully
+npm run build -- nonexistent configs/prod/maria.json          # Should fail gracefully
+npm run build -- discovery-agreement configs/prod/nonexistent.json      # Should fail gracefully
 ```
 
 **Required Error Checks:**
@@ -121,13 +152,13 @@ npm run build -- discovery nonexistent      # Should fail gracefully
 - [ ] No crashes or stack traces
 - [ ] Helpful guidance provided to user
 
-### ✅ **Cross-Config Testing**
+### **Cross-Config Testing**
 
 #### **7. Multiple Configurations**
 ```bash
 # Test with different configs
-npm run build -- discovery john-boros
-npm run build -- discovery maria
+npm run build -- discovery-agreement configs/prod/john-boros.json
+npm run build -- discovery-agreement configs/prod/maria.json
 ```
 
 **Required Multi-Config Checks:**
@@ -142,11 +173,14 @@ npm run build -- discovery maria
 ### **Quick Verification Commands**
 ```bash
 # Full workflow test
-npm run build -- discovery maria
+npm run build -- discovery-agreement configs/prod/maria.json
 
 # Individual component tests  
-npm run customize -- discovery maria
-npm run pdf -- maria
+npm run customize -- discovery-agreement configs/prod/maria.json
+npm run pdf -- configs/prod/maria.json
+
+# Development server test
+npm run serve -- discovery-agreement
 
 # Visual verification
 open exports/[client-slug]/slides/00-cover.html
@@ -194,10 +228,11 @@ exports/[client-slug]/
 Brief description of change
 
 Verification completed:
-✅ npm run build -- discovery maria (successful)
-✅ Visual verification: logos display correctly
+✅ npm run build -- discovery-agreement configs/prod/maria.json (successful)
+✅ npm run serve -- discovery-agreement (development server working)
+✅ Visual verification: logos display correctly in both dev and prod
 ✅ PDF generation: 7 files created in correct location
-✅ Token replacement: no unreplaced {{}} tokens
+✅ Token replacement: asset_path system working correctly
 ✅ Error handling: graceful failure for missing configs
 
 Evidence:
@@ -205,6 +240,8 @@ Evidence:
 - All 6 HTML files generated with correct content
 - All 7 PDF files generated with proper sizes
 - White logo displays on cover, black logo on other slides
+- Development server serves templates with ../../assets/ paths
+- Production builds use ../assets/ paths correctly
 ```
 
 ## Common Issues and Solutions

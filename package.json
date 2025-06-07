@@ -9,6 +9,7 @@
     "test:unit": "echo \"Unit tests not implemented yet\"",
     "test:integration": "echo \"Integration tests not implemented yet\"",
     "test:e2e": "echo \"E2E tests not implemented yet\"",
+    "serve": "node scripts/serve.js",
     "customize": "node scripts/customize.js",
     "pdf": "node scripts/generate-pdf.js", 
     "build": "node scripts/build.js"
