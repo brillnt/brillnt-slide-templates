@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .slide-container {
+            width: 1280px; 
+            min-height: 720px; 
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-16">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <img src="{{asset_path}}/brillnt-logo--black.png" alt="brillnt" class="h-8">
+            <div class="text-right text-sm text-gray-500">
+                <div class="font-medium">Discovery & Planning</div>
+                <div>Next Steps</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex items-center">
+            <div class="w-1/2">
+                <h1 class="text-5xl font-semibold text-black mb-8 leading-tight">
+                    Ready to Get<br>Started?
+                </h1>
+                
+                <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                    Let's build the foundation for your project success together.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-semibold flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Schedule Your Discovery Call</h3>
+                            <p class="text-gray-600">We'll discuss your vision, goals, and project requirements</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-semibold flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Secure Your Planning Phase</h3>
+                            <p class="text-gray-600">$1,000 deposit to begin, applies toward your total project cost</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-semibold flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Receive Your Complete Roadmap</h3>
+                            <p class="text-gray-600">Detailed project plan, timeline, and scope within 1-2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-semibold flex-shrink-0">4</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-black mb-2">Begin Development</h3>
+                            <p class="text-gray-600">Start building with confidence and clear direction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-1/2 pl-16">
+                <div class="bg-black text-white rounded-3xl p-12 text-center">
+                    <div class="mb-8">
+                        <div class="text-sm font-medium opacity-80 mb-2">Discovery & Planning Investment</div>
+                        <div class="text-5xl font-bold mb-2">$1,500</div>
+                        <div class="text-lg opacity-80">Applies toward total project cost</div>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center text-sm">
+                            <span className="opacity-80">Deposit to start:</span>
+                            <span className="font-semibold">$1,000</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span className="opacity-80">Final payment:</span>
+                            <span className="font-semibold">$500</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-600 pt-6">
+                        <div class="text-sm opacity-80 mb-4">
+                            Questions? Let's talk about your project.
+                        </div>
+                        <div class="text-lg font-semibold">
+                            Schedule your discovery call today
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
