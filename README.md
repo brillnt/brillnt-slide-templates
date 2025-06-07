@@ -227,13 +227,74 @@ Client names are automatically converted to URL-safe slugs:
 **Use case:** Initial client engagement and planning phase setup  
 **Required tokens:** `client_name`, `date`, `payment.*`
 
-**Template files:**
-- `00-cover.html` - Cover slide with logo and client name
-- `01-title_overview.html` - Title and investment overview  
-- `02-how_we_work_together.html` - Process and collaboration details
-- `03-your_commitment.html` - Client responsibilities and expectations
-- `04-what_you_receive.html` - Deliverables and outcomes
-- `05-agreement_next_steps.html` - Terms, signatures, and next steps
+### **Discovery & Planning Document** (`discovery-planning-document`)
+**Purpose:** Educational guide explaining the discovery process and its value  
+**Slides:** 6 slides (Cover, Foundation, Roadmap, Investment, Paths, Next Steps)  
+**Use case:** Client education and discovery process explanation  
+**Required tokens:** `client_name`, `date`
+
+### **Overall Process Overview** (`overall-process-overview`)
+**Purpose:** Visual journey through the complete 4-phase project process  
+**Slides:** 8 slides (Cover, Overview, 4 Phase Details, Benefits, Ready to Start)  
+**Use case:** Project kickoff and process explanation  
+**Required tokens:** `client_name`, `date`
+
+### **Timeline Agreement** (`timeline-agreement`)
+**Purpose:** Formal timeline agreement with detailed phase breakdown  
+**Slides:** 6 slides (Cover, Project Info, Schedule, Factors, Protection, Signatures)  
+**Use case:** Timeline confirmation and project scheduling  
+**Required tokens:** `client_name`, `project_name`, `start_date`, `completion_date`, phase dates, call dates
+
+### **Scope Approval** (`scope-approval`)
+**Purpose:** Comprehensive project scope confirmation and approval  
+**Slides:** 6 slides (Cover, Overview, Structure, Technical, Investment, Approval)  
+**Use case:** Final project scope confirmation before development  
+**Required tokens:** `client_name`, `project_name`, `total_investment`, project details, technical specs
+
+### **Project Communication Doc** (`project-communication-doc`)
+**Purpose:** Communication guidelines and team contact framework  
+**Slides:** 5 slides (Cover, Team Contact, Schedule, Process, Preferences)  
+**Use case:** Setting communication expectations and processes  
+**Required tokens:** `client_name`, `project_name`, team member details, platform info
+
+## 🚀 Build All Templates
+
+Use these commands to generate complete client packages for all available templates:
+
+```bash
+# Original Discovery Agreement
+npm run build -- discovery-agreement configs/dev/discovery-agreement.json
+
+# New Templates (Development Configs)
+npm run build -- discovery-planning-document configs/dev/discovery-planning-document.json
+npm run build -- overall-process-overview configs/dev/overall-process-overview.json
+npm run build -- timeline-agreement configs/dev/timeline-agreement.json
+npm run build -- scope-approval configs/dev/scope-approval.json
+npm run build -- project-communication-doc configs/dev/project-communication-doc.json
+```
+
+### **Production Builds**
+For production client packages, replace the config paths with your client-specific configurations:
+
+```bash
+# Example with production config
+npm run build -- discovery-agreement configs/prod/maria.json
+npm run build -- timeline-agreement configs/prod/client-name.json
+npm run build -- scope-approval configs/prod/client-name.json
+```
+
+### **Quick Development Testing**
+Test all templates quickly during development:
+
+```bash
+# Start development servers (one at a time)
+npm run serve -- discovery-agreement
+npm run serve -- discovery-planning-document
+npm run serve -- overall-process-overview
+npm run serve -- timeline-agreement
+npm run serve -- scope-approval
+npm run serve -- project-communication-doc
+```
 
 ## 🔧 Creating New Templates
 
