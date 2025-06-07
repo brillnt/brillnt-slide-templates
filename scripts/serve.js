@@ -38,11 +38,23 @@ function copyDirectory(src, dest) {
  * Simple HTTP server to serve static files
  */
 function createServer(rootDir, port = 3000) {
+    const projectRoot = path.resolve(__dirname, '..');
+    
     const server = http.createServer((req, res) => {
-        let filePath = path.join(rootDir, req.url === '/' ? 'index.html' : req.url);
+        let filePath;
         
-        // Security check - prevent directory traversal
-        if (!filePath.startsWith(rootDir)) {
+        // Handle asset requests - serve from project root assets directory
+        if (req.url.includes('/assets/')) {
+            // Extract the asset path (e.g., from "../../assets/brillnt-logo.png" or "/assets/brillnt-logo.png")
+            const assetPath = req.url.split('/assets/')[1];
+            filePath = path.join(projectRoot, 'assets', assetPath);
+        } else {
+            // Serve template files from temp directory
+            filePath = path.join(rootDir, req.url === '/' ? 'index.html' : req.url);
+        }
+        
+        // Security check - prevent directory traversal for template files
+        if (!req.url.includes('/assets/') && !filePath.startsWith(rootDir)) {
             res.writeHead(403);
             res.end('Forbidden');
             return;
