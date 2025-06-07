@@ -4,8 +4,10 @@ This document outlines the development practices and verification procedures for
 
 ## Core Development Principles
 
-### 1. **Explicit Verification Through Observation**
+### 1. **Explicit Verification Through Objective Observation**
 - **Never assume code works** - always verify through direct testing
+- **Use two-phase verification** - objective observation first, then verification check
+- **Separate observation from verification** - don't look for what you expect to see
 - **Test actual outputs** - check generated files, not just code logic
 - **Use evidence-based verification** - observe terminal output, file contents, and visual results
 - **Document what you verified** - be specific about what was tested and how
@@ -14,7 +16,7 @@ This document outlines the development practices and verification procedures for
 - **Test incrementally** - verify each change before moving to the next
 - **Test end-to-end workflows** - don't just test individual functions
 - **Test edge cases** - missing files, invalid configs, malformed data
-- **Test visual outputs** - ensure images, layouts, and styling work correctly
+- **Test visual outputs using objective observation** - record what text you can read, then verify expectations
 
 ## Required Verification Checklist
 
@@ -86,9 +88,9 @@ npm run serve -- discovery-agreement
 - [ ] Server starts without errors
 - [ ] Index page lists all 6 slides
 - [ ] Individual slides load correctly
-- [ ] **Development logos display correctly** (using ../../assets/ path)
-- [ ] Development config data appears (Development Client, Dev Corp)
-- [ ] No broken images in development mode
+- [ ] **Objective observation:** Record what text you can read on each slide
+- [ ] **Verification check:** Observations include "brillnt." in elegant italic script (development logos working)
+- [ ] **Verification check:** Observations include development config data (Development Client, Dev Corp)
 - [ ] Server can be stopped cleanly (Ctrl+C)
 
 #### **9. Asset Path Token System**
@@ -101,42 +103,46 @@ npm run serve -- discovery-agreement
 - [ ] **Production:** `{{asset_path}}` resolves to `../../assets` (references original assets)
 - [ ] Templates use `{{asset_path}}/brillnt-logo.png` syntax
 - [ ] No hardcoded asset paths in template files
-- [ ] Both development and production logos display correctly
+- [ ] **Objective observation:** Record text visible on slides in both development and production
+- [ ] **Verification check:** Observations include "brillnt." in elegant italic script in both contexts
 - [ ] NO asset copying occurs (cleaner client packages)
 
-### ✅ **Visual Verification (CRITICAL)**
+### ✅ **Visual Verification Using Objective Observation (CRITICAL)**
 
-#### **4. Image Assets Display Correctly**
+#### **4. Logo and Content Verification**
 ```bash
 # Open generated HTML in browser
 # Check: file:///path/to/exports/[client-slug]/slides/00-cover.html
 ```
 
-**Required Visual Checks:**
-- [ ] **White brillnt logo displays** on cover slide (black background)
-- [ ] **Black brillnt logo displays** on other slides (white background)
-- [ ] **No broken image icons** visible
-- [ ] **Logos are properly sized** and positioned
-- [ ] **All slides load without visual errors**
+**Required Objective Observation Process:**
+- [ ] **Phase 1:** Record all text you can read on each slide (no expectations)
+- [ ] **Phase 2:** Check if observations include "brillnt." in elegant italic script font
+- [ ] **Phase 2:** Check if observations include expected client content
+- [ ] **Phase 2:** Check if observations include expected payment amounts and dates
 
-**Common Issues to Check:**
-- Image paths pointing to wrong directory (`../../assets/` vs `../assets/`)
-- Missing asset files in client package
-- Broken relative paths after directory structure changes
+**Verification Results:**
+- [ ] **Cover slide:** "brillnt." in elegant italic script visible (logo working)
+- [ ] **Other slides:** "brillnt." in elegant italic script visible (logo working)
+- [ ] **All slides:** Expected client content visible in observations
+- [ ] **No alt text:** "brillnt" in standard font indicates broken logo (FAIL)
 
-#### **5. Content Verification**
+**Remember:** Only "brillnt." in elegant italic script = working logo. Any other font = broken image alt text.
+
+#### **5. Token Replacement Verification**
 ```bash
 # Check token replacement in generated files
 grep "María González" exports/[client-slug]/slides/00-cover.html
 grep "{{" exports/[client-slug]/slides/*.html  # Should return no results
 ```
 
-**Required Content Checks:**
-- [ ] Client name appears correctly in all slides
-- [ ] Payment amount displays correctly ($1,500)
-- [ ] Date displays correctly (current date)
-- [ ] No unreplaced mustache tokens (`{{}}`) remain
-- [ ] UTF-8 characters display correctly (María, Café)
+**Required Token Verification Process:**
+- [ ] **Phase 1:** Record all text visible in generated files (objective observation)
+- [ ] **Phase 2:** Check if observations include expected client name (María González)
+- [ ] **Phase 2:** Check if observations include expected payment amount ($1,500)
+- [ ] **Phase 2:** Check if observations include expected date
+- [ ] **Phase 2:** Verify no unreplaced mustache tokens (`{{}}`) in observations
+- [ ] **Phase 2:** Verify UTF-8 characters display correctly in observations
 
 ### ✅ **Error Handling Verification**
 
@@ -162,12 +168,13 @@ npm run build -- discovery-agreement configs/prod/john-boros.json
 npm run build -- discovery-agreement configs/prod/maria.json
 ```
 
-**Required Multi-Config Checks:**
-- [ ] Both configs generate correctly
-- [ ] Different client slugs created
-- [ ] No cross-contamination between clients
-- [ ] UTF-8 handling works (María González)
-- [ ] Different payment amounts display correctly
+**Required Multi-Config Verification Process:**
+- [ ] **Phase 1:** Record all text visible in both client packages (objective observation)
+- [ ] **Phase 2:** Check if observations include different client names for each config
+- [ ] **Phase 2:** Check if observations include different payment amounts for each config
+- [ ] **Phase 2:** Check if observations include "brillnt." in elegant italic script for both configs
+- [ ] **Phase 2:** Verify no cross-contamination between client content in observations
+- [ ] **Phase 2:** Verify UTF-8 handling works correctly (María González) in observations
 
 ## Testing Commands Reference
 
@@ -183,8 +190,10 @@ npm run pdf -- configs/prod/maria.json
 # Development server test
 npm run serve -- discovery-agreement
 
-# Visual verification
+# Visual verification using objective observation
 open exports/[client-slug]/slides/00-cover.html
+# Phase 1: Record what text you can read
+# Phase 2: Check if observations include "brillnt." in elegant italic script
 
 # Content verification
 grep -r "{{" exports/[client-slug]/slides/  # Should be empty
@@ -228,7 +237,7 @@ Brief description of change
 Verification completed:
 ✅ npm run build -- discovery-agreement configs/prod/maria.json (successful)
 ✅ npm run serve -- discovery-agreement (development server working)
-✅ Visual verification: logos display correctly in both dev and prod
+✅ Visual verification using objective observation: recorded text on all slides, verified "brillnt." in elegant italic script present
 ✅ PDF generation: 7 files created in correct location
 ✅ Token replacement: asset_path system working correctly
 ✅ Error handling: graceful failure for missing configs
@@ -237,9 +246,9 @@ Evidence:
 - Client package created: exports/mara-gonzlez-caf-esperanza/
 - All 6 HTML files generated with correct content
 - All 7 PDF files generated with proper sizes
-- White logo displays on cover, black logo on other slides
+- Objective observation: "brillnt." in elegant italic script visible on all slides
 - Development server serves templates with ../../assets/ paths
-- Production builds use ../assets/ paths correctly
+- Production builds use ../../assets/ paths correctly (no asset copying)
 ```
 
 ## 🤖 AI-Specific Verification Guidelines
@@ -288,42 +297,51 @@ Your expectations contaminate your observations. Force objectivity by observing 
 
 ## Common Issues and Solutions
 
-### **Image Assets Not Displaying**
-- **Check:** Image paths in template files
-- **Fix:** Ensure paths use `../assets/` not `../../assets/`
-- **Verify:** Open HTML files in browser to confirm logos display
+### **Logo Verification Issues**
+- **Problem:** Seeing "brillnt" in standard font instead of elegant italic script
+- **Diagnosis:** This is alt text from a broken image, not the actual logo
+- **Fix:** Check asset paths in template files and ensure images are being served correctly
+- **Verify:** Use objective observation - record what text you can read, check for "brillnt." in elegant italic script
+
+### **Asset Path Issues**
+- **Problem:** Images not loading in browser
+- **Diagnosis:** Incorrect relative paths in templates
+- **Fix:** Ensure templates use `{{asset_path}}/brillnt-logo.png` syntax
+- **Verify:** Use two-phase verification - observe what text is visible, then check for expected logo text
 
 ### **PDFs in Wrong Location**
 - **Check:** PDF generation script output directory
 - **Fix:** Ensure PDFs save to `exports/[client]/pdfs/` not `exports/slides/`
-- **Verify:** Check file system after PDF generation
+- **Verify:** Use objective observation - check file system structure, record what directories exist
 
 ### **Token Replacement Issues**
 - **Check:** Config file structure matches token expectations
 - **Fix:** Ensure nested objects (payment.amount) are properly structured
-- **Verify:** Search generated files for unreplaced `{{}}` tokens
+- **Verify:** Use objective observation - record all text visible in generated files, check for unreplaced `{{}}` tokens
 
 ### **UTF-8 Character Issues**
 - **Check:** File encoding and config file format
 - **Fix:** Ensure all files saved as UTF-8
-- **Verify:** Test with María González config
+- **Verify:** Use objective observation - record text visible in files, check if María González appears correctly
 
 ## Development Workflow
 
 1. **Make changes** to code
-2. **Run verification checklist** completely
+2. **Run verification checklist** using objective observation protocol
 3. **Document verification results** with evidence
 4. **Commit with detailed verification notes**
 5. **Push to feature branch**
 6. **Request review** with verification evidence
 
-## Remember: Evidence Over Assumptions
+## Remember: Objective Observation Over Assumptions
 
 - **Don't assume** your code works because the logic is correct
-- **Always verify** through direct observation and testing
-- **Document evidence** of what you actually tested
-- **Test visually** - open files in browser, check images display
-- **Be systematic** - follow the checklist completely every time
+- **Always verify** through two-phase objective observation
+- **Phase 1:** Record what you can actually observe (no expectations)
+- **Phase 2:** Check if observations include expected elements
+- **Document evidence** of what you actually observed
+- **Use text-based verification** - record readable text, check for specific fonts and content
+- **Be systematic** - follow the objective observation protocol every time
 
-**The goal is to catch issues before they reach production, not after.**
+**The goal is to catch issues through reliable observation, not through expectation-driven verification.**
 
